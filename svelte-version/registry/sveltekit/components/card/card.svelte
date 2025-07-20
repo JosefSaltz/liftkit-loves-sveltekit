@@ -47,7 +47,7 @@
     ...restProps
   }: LkCardProps = $props()
 
-  let lkCardAttrs = $state(propsToDataAttrs({ scaleFactor, variant, material, className }, "card"));
+  let lkCardAttrs = $derived(propsToDataAttrs({ scaleFactor, variant, material, className }, "card"));
 
 </script>
 

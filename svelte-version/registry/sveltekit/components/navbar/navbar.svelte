@@ -48,7 +48,7 @@
     ctaButtons,
     ...restProps
   }: LkNavBarProps = $props()
-  const dataAttrs = $state(propsToDataAttrs({ material, restProps }, "navbar"));
+  const dataAttrs = $derived(propsToDataAttrs({ material, restProps }, "navbar"));
 
   let menuOpen = useState(false);
   const setMenuOpen = (state: boolean) => menuOpen = state;

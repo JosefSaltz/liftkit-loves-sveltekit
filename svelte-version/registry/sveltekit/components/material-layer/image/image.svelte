@@ -57,7 +57,7 @@ let {
   ...rest
 }: LkImageProps = $props()
 
-const attrs = $state(propsToDataAttrs({ aspect, borderRadius, objectFit, width, height }, "image"));
+const attrs = $derived(propsToDataAttrs({ aspect, borderRadius, objectFit, width, height }, "image"));
 </script>
 
 <img data-lk-component="image" {...attrs} {...rest} alt="" />

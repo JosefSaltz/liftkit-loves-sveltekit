@@ -1,5 +1,4 @@
 <script lang="ts">
-  import { useMemo } from "react";
   import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
   import { getOnToken } from "$registry/universal/lib/colorUtils";
   //import { IconName } from "lucide-react/dynamic";
@@ -62,8 +61,7 @@
     ...restProps
   }: LkButtonProps = $props();
 
-  // This might need to be $derived instead
-  const lkButtonAttrs = $state(
+  const lkButtonAttrs = $derived(
     propsToDataAttrs({ variant, color, size, startIcon, endIcon, opticIconShift }, "button"),
   );
 

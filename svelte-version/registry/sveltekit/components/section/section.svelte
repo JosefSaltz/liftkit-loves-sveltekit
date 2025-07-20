@@ -19,9 +19,9 @@
   let { props }: { props: LkSectionProps} = $props();
   //TODO:  Give section default padding of "md" */
   const { container, children, padding, px, py, pt, pb, pl, pr, ...restProps } = props;
-  // TODO: This might need to be $derived instead
-  const lkSectionAttrs = $state(
-    () => propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, "section"),
+
+  const lkSectionAttrs = $derived(
+    propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, "section"),
   );
 
 </script>

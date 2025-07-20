@@ -21,8 +21,7 @@
     ...restProps
   }: LkRowProps = $props();
 
-  // TODO: This might need to be changed to $derived instead
-  const lkRowAttrs = $state(
+  const lkRowAttrs = $derived(
     propsToDataAttrs({ alignItems, justifyContent, gap, wrapChildren, defaultChildBehavior }, "row")
   );
 </script>

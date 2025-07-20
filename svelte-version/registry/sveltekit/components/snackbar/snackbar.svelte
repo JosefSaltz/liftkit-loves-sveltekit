@@ -75,7 +75,7 @@
     }
   });
 
-  const dataAttrs = $state(
+  const dataAttrs = $derived(
     propsToDataAttrs(
       {
         globalColor,

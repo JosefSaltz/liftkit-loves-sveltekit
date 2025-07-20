@@ -36,8 +36,7 @@ let {
   ...restProps
 }: LkGridProps = $props() 
 
-  // TODO: This might need to be $derived instead
-  const lkGridAttrs = $state(propsToDataAttrs({ autoResponsive, gap, ...restProps }, "grid"));
+  const lkGridAttrs = $derived(propsToDataAttrs({ autoResponsive, gap, ...restProps }, "grid"));
 
   /**Render placeholder blocks for columns if no children are passed */
 
