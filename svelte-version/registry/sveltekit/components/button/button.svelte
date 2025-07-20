@@ -85,6 +85,7 @@
       baseButtonClasses = `bg-${color} color-${onColorToken}`;
       break;
   }
+  
   if (modifiers) {
     baseButtonClasses += ` ${modifiers}`;
   }

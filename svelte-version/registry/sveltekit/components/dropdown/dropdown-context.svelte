@@ -24,7 +24,7 @@
   }
 
   // Context for dropdown state
-  const DropdownContext = $setContext<LkDropdownContext>("dropdown-context", {} as LkDropdownContext);
+  const DropdownContext = $setContext<LkDropdownContext>("DropdownContext", {} as LkDropdownContext);
     // TODO: Update this to a svelte type
   let { children }: { children: React.ReactNode } = $props();
   const [open, setOpen] = useState(false);
@@ -39,24 +39,21 @@
     return () => DropdownRegistry.unregister(self);
   });
 
+  // Singleton registry to track open dropdowns
+  const DropdownRegistry = (() => {
+    interface DropdownInstance {
+      close: () => void;
+    }
 
-
-
-// Singleton registry to track open dropdowns
-const DropdownRegistry = (() => {
-  interface DropdownInstance {
-    close: () => void;
-  }
-
-  let current: DropdownInstance | null = null;
-  return {
-    register(instance: DropdownInstance) {
-      if (current && current !== instance) current.close();
-      current = instance;
-    },
-    unregister(instance: DropdownInstance) {
-      if (current === instance) current = null;
-    },
-  };
-})();
+    let current: DropdownInstance | null = null;
+    return {
+      register(instance: DropdownInstance) {
+        if (current && current !== instance) current.close();
+        current = instance;
+      },
+      unregister(instance: DropdownInstance) {
+        if (current === instance) current = null;
+      },
+    };
+  })();
 </script>
