@@ -1,41 +1,41 @@
 <script lang="ts">
-import styles from "./page.module.css";
-import Section from "@/registry/nextjs/components/section";
-import Text from "@/registry/nextjs/components/text";
-import Row from "@/registry/nextjs/components/row";
-
-import Sticker from "@/registry/nextjs/components/sticker";
-import Button from "@/registry/nextjs/components/button";
-import Image from "@/registry/nextjs/components/image";
-import Badge from "@/registry/nextjs/components/badge";
-import Icon from "@/registry/nextjs/components/icon";
-import Grid from "@/registry/nextjs/components/grid";
-import TabContent from "@/registry/nextjs/components/tab-content";
-import Tabs from "@/registry/nextjs/components/tabs";
-import Card from "@/registry/nextjs/components/card";
-
-import NavBar from "@/registry/nextjs/components/navbar";
-import IconButton from "@/registry/nextjs/components/icon-button";
-import ThemeController from "@/registry/nextjs/components/theme-controller";
-
-const contentStyle: React.CSSProperties = {
-  background: "#e0e0e0",
-  border: "1px dashed #888",
-  padding: "1rem",
-  textAlign: "center",
-  fontSize: "14px",
-  color: "darkgreen",
-};
-
-const aspectRatios = ["auto", "1/1", "2.39/1", "2/1", "16/9", "3/2", "4/3", "5/4", "1/2.39", "1/2", "9/16", "4/5"];
-
-const sizes = ["3xs", "2xs", "xs", "sm", "lg", "xl", "2xl", "3xl", "4xl"];
-
-const radii = ["none", "zero", "3xs", "2xs", "xs", "sm", "lg", "xl", "2xl", "3xl", "4xl"];
-
-const tabLabels = ["Home", "Profile", "Settings"];
-const variants = ["fill", "outline", "text"] as const;
-const buttonSizes = ["sm", "md", "lg"] as const;
+  import styles from "./page.module.css";
+  import Section from "@/registry/nextjs/components/section";
+  import Text from "@/registry/nextjs/components/text";
+  import Row from "@/registry/nextjs/components/row";
+  
+  import Sticker from "@/registry/nextjs/components/sticker";
+  import Button from "@/registry/nextjs/components/button";
+  import Image from "@/registry/nextjs/components/image";
+  import Badge from "@/registry/nextjs/components/badge";
+  import Icon from "@/registry/nextjs/components/icon";
+  import Grid from "@/registry/nextjs/components/grid";
+  import TabContent from "@/registry/nextjs/components/tab-content";
+  import Tabs from "@/registry/nextjs/components/tabs";
+  import Card from "@/registry/nextjs/components/card";
+  
+  import NavBar from "@/registry/nextjs/components/navbar";
+  import IconButton from "@/registry/nextjs/components/icon-button";
+  import ThemeController from "@/registry/nextjs/components/theme-controller";
+  
+  const contentStyle: React.CSSProperties = {
+    background: "#e0e0e0",
+    border: "1px dashed #888",
+    padding: "1rem",
+    textAlign: "center",
+    fontSize: "14px",
+    color: "darkgreen",
+  };
+  
+  const aspectRatios = ["auto", "1/1", "2.39/1", "2/1", "16/9", "3/2", "4/3", "5/4", "1/2.39", "1/2", "9/16", "4/5"];
+  
+  const sizes = ["3xs", "2xs", "xs", "sm", "lg", "xl", "2xl", "3xl", "4xl"];
+  
+  const radii = ["none", "zero", "3xs", "2xs", "xs", "sm", "lg", "xl", "2xl", "3xl", "4xl"];
+  
+  const tabLabels = ["Home", "Profile", "Settings"];
+  const variants = ["fill", "outline", "text"] as const;
+  const buttonSizes = ["sm", "md", "lg"] as const;
 
   // const handleChange = (value: string) => {
   //   setSelectedValue(value);
@@ -66,7 +66,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       <Button key="primary" label="Primary" variant="fill" color="surfacecontainer" />,
     ]}
   />
-  {/* <Snackbar badgeColor="error" globalColor="surface" /> */}
+  <!--<Snackbar badgeColor="error" globalColor="surface" /> -->
   <div
     style={{
       display: "grid",
@@ -75,28 +75,28 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       background: "#f0f0f0",
     }}
   >
-    {/* Default usage */}
-    {/* <Snackbar /> */}
+    <!-- Default usage -->
+    <!-- <Snackbar /> -->
 
-    {/* Custom message */}
-    {/* <Snackbar message="Your changes have been saved." fontClass="label" backgroundColor="error" /> */}
+    <!-- Custom message -->
+    <!-- <Snackbar message="Your changes have been saved." fontClass="label" backgroundColor="error" /> -->
 
-    {/* Custom badge color */}
-    {/* <Snackbar badgeColor="error" message="There was a problem saving your changes." /> */}
+    <!-- Custom badge color -->
+    <!-- <Snackbar badgeColor="error" message="There was a problem saving your changes." /> -->
 
-    {/* Custom primary and secondary button colors */}
-    {/* <Snackbar primaryButtonColor="success" secondaryButtonColor="error" message="Settings updated successfully." /> */}
+    <!-- Custom primary and secondary button colors -->
+    <!-- <Snackbar primaryButtonColor="success" secondaryButtonColor="error" message="Settings updated successfully." /> -->
 
-    {/* Global color overrides badge + both buttons */}
-    {/* <Snackbar globalColor="warning" message="This will overwrite existing data." /> */}
+    <!-- Global color overrides badge + both buttons -->
+    <!-- <Snackbar globalColor="warning" message="This will overwrite existing data." /> -->
 
-    {/* Adding custom class or inline styles */}
-    {/* <Snackbar
+    <!-- Adding custom class or inline styles -->
+    <!-- <Snackbar
       message="Styled with className and onClick!"
       className="custom-snackbar"
       onClick={() => alert("Snackbar clicked")}
       style={{ cursor: "pointer" }}
-    /> */}
+    /> -->
   </div>
   <Tabs tabLinks={tabLabels}>
     {tabLabels.map((label, index) => (
@@ -154,13 +154,13 @@ const buttonSizes = ["sm", "md", "lg"] as const;
   <span className="absolute top-0">Hello</span>
   <Icon name="airplay" color="primary" fontClass="title2" />
   <div style={{ display: "grid", gap: "2rem", padding: "2rem" }}>
-    {/* Basic Card */}
+    <!--Basic Card -->
     <Card>
       <h2>Basic Card</h2>
       <p>This is a basic card with default styling.</p>
     </Card>
 
-    {/* Filled Card with Title Scale */}
+    <!--Filled Card with Title Scale -->
     <Card scale-factor="caption" variant="fill" material="flat" optical-correction="y">
       <Text tag="h1" fontClass="display1">
         Filled Card
@@ -171,19 +171,19 @@ const buttonSizes = ["sm", "md", "lg"] as const;
     </Card>
 
     <div style={{ display: "grid", gap: "2rem", padding: "2rem" }}>
-      {/* Basic Card */}
+      <!--Basic Card -->
       <Card>
         <h2>Basic Card</h2>
         <p>This is a basic card with default styling.</p>
       </Card>
 
-      {/* Filled Card with Title Scale */}
+      <!--Filled Card with Title Scale -->
       <Card scaleFactor="title1" variant="fill" material="flat" optical-correction="left">
         <h2>Filled Card</h2>
         <p>This card uses the fill variant and title1 scale.</p>
       </Card>
 
-      {/* Outline Glass Card with Clickable Style */}
+      <!--Outline Glass Card with Clickable Style -->
 
       <Card
         scaleFactor="body"
@@ -253,7 +253,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
     <span className="absolute top-0">Hello</span>
     <Icon name="airplay" color="primary" fontClass="title2" />
     <div style={{ display: "grid", gap: "2rem", padding: "2rem" }}>
-      {/* Padding prop variations */}
+      <!--Padding prop variations -->
       <Section padding="none">
         <div style={contentStyle}>padding=none</div>
       </Section>
@@ -278,8 +278,8 @@ const buttonSizes = ["sm", "md", "lg"] as const;
         <div style={contentStyle}>padding=xl</div>
       </Section>
 
-      {/* Individual directional paddings using data attributes */}
-      {/* <Section {...{ "lk-section-px": "md" }}> */}
+      <!--Individual directional paddings using data attributes -->
+      <!--<Section {...{ "lk-section-px": "md" }}> -->
       <Section px="md">
         <div style={contentStyle}>lk-section-px=md</div>
       </Section>
@@ -304,14 +304,14 @@ const buttonSizes = ["sm", "md", "lg"] as const;
         <div style={contentStyle}>lk-section-pl=lg</div>
       </Section>
 
-      {/* Combined directional paddings */}
+      <!--Combined directional paddings -->
       <Section pt="sm" pr="md" pb="lg" pl="xl">
         <div style={contentStyle}>pt=sm + pr=md + pb=lg + pl=xl</div>
       </Section>
     </div>
     <div>
       <div style={{ display: "grid", gap: "2rem", padding: "2rem" }}>
-        {/* Padding prop variations */}
+        <!--Padding prop variations -->
         <Section padding="none">
           <div style={contentStyle}>padding=none</div>
         </Section>
@@ -336,8 +336,8 @@ const buttonSizes = ["sm", "md", "lg"] as const;
           <div style={contentStyle}>padding=xl</div>
         </Section>
 
-        {/* Individual directional paddings using data attributes */}
-        {/* <Section {...{ "lk-section-px": "md" }}> */}
+        <!--Individual directional paddings using data attributes -->
+        <!--<Section {...{ "lk-section-px": "md" }}> -->
         <Section px="md">
           <div style={contentStyle}>lk-section-px=md</div>
         </Section>
@@ -362,7 +362,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
           <div style={contentStyle}>lk-section-pl=lg</div>
         </Section>
 
-        {/* Combined directional paddings */}
+        <!--Combined directional paddings -->
         <Section pt="sm" pr="md" pb="lg" pl="xl">
           <div style={contentStyle}>pt=sm + pr=md + pb=lg + pl=xl</div>
         </Section>
@@ -446,7 +446,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       </div>
     ))}
 
-    {/* SIZE TESTING */}
+    <!--SIZE TESTING -->
     <div className="size-test-grid">
       {sizes.map((size) => (
         <figure key={size} className="size-test-item">
@@ -462,7 +462,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       ))}
     </div>
 
-    {/* RADII TESTING */}
+    <!--RADII TESTING -->
     <div className="radius-test-grid">
       {radii.map((radius) => (
         <figure key={radius} className="radius-test-item">
@@ -472,7 +472,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       ))}
     </div>
 
-    {/* OBJECT-FIT TESTING */}
+    <!--OBJECT-FIT TESTING -->
     <div className="objectfit-test-grid">
       <figure>
         <Image src="/testimage.png" alt="cover" lk-image-object-fit="cover" />
@@ -496,7 +496,7 @@ const buttonSizes = ["sm", "md", "lg"] as const;
       </figure>
     </div>
 
-    {/* ASPECT RATIO TESTING */}
+    <!--ASPECT RATIO TESTING -->
     <div className="aspect-test-grid">
       {#each aspectRatios as ration }(ratio) => (
         <figure key={ratio} style={{ border: "1px solid #ccc" }}>
