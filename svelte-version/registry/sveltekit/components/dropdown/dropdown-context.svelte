@@ -1,11 +1,8 @@
-<script lang="ts">
+<script lang="ts" module>
   // CustomDropdown.tsx
-  import Card, { LkCardProps } from "@/registry/nextjs/components/card";
-  import React, { useContext, useState, useRef, useEffect, createContext } from "react";
-  import Column from "@/registry/nextjs/components/column";
-  import ReactDOM from "react-dom";
-  import "@/registry/nextjs/components/dropdown/dropdown.css";
-  import { setContext } from 'svelte';
+  import type { LkCardProps } from "@/registry/sveltekit/components/card";
+  import "@/registry/sveltekit/components/dropdown/dropdown.css";
+  import { setContext, Snippet } from 'svelte';
 
   interface LkDropdownContext {
     open: boolean;
@@ -15,21 +12,22 @@
   }
 
   export interface LkDropdownTriggerProps {
-    children: React.ReactElement;
+    children: Snippet;
   }
 
   export interface LkDropdownMenuProps {
-    children: React.ReactNode;
+    children: Snippet;
     cardProps?: LkCardProps; // Optional props to pass to the child Card component.
   }
 
   // Context for dropdown state
-  const DropdownContext = $setContext<LkDropdownContext>("DropdownContext", {} as LkDropdownContext);
+  setContext<LkDropdownContext>("DropdownContext", {} as LkDropdownContext);
     // TODO: Update this to a svelte type
-  let { children }: { children: React.ReactNode } = $props();
-  const [open, setOpen] = useState(false);
-  const triggerRef = useRef(null);
-  const contentRef = useRef(null);
+  let { children }: { children: Snippet} = $props();
+  let open = $state(false);
+  const setOpen = (state: boolean) => { open = state };
+  const triggerRef = $state(null);
+  const contentRef = $state(null);
 
   // Global singleton registry
   $effect(() => {

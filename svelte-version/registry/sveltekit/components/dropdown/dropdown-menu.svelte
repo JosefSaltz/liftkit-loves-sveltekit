@@ -71,10 +71,6 @@
     left: rect.right + window.scrollX,
   };
 
-  return snip(() =>
-    
-  );
-}
 </script>
 <div
       ref={contentRef}
@@ -86,7 +82,7 @@
     >
       <Card {...cardProps} className="shadow-xl">
         <Column gap="none" className={cardProps?.scaleFactor}>
-          {children}
+          {@render children()}
         </Column>
       </Card>
     </div>,
