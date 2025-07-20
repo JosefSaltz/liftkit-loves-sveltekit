@@ -1,6 +1,6 @@
 <script lang="ts">
   // import "./material-layer-core.css";
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
 
   /** LKMatProps is an object of any of the given types. Each material type has different unique props. */
   type LkMatProps = LkMatProps_Glass | LkMatProps_Flat;

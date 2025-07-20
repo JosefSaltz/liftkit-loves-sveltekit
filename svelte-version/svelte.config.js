@@ -10,7 +10,8 @@ const config = {
 	alias: {
       "@/*": "./",
 			"$lib": "./src/lib",
-			"$routes": "./src/routes"
+			"$routes": "./src/routes",
+			"$registry": "./registry"
   },
 };
 

@@ -1,7 +1,7 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/card/card.css";
-  import MaterialLayer from "@/registry/sveltekit/components/material-layer";
+  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
+  import "$registry/sveltekit/components/card/card.css";
+  import MaterialLayer from "$registry/sveltekit/components/material-layer";
 
   // TODO: Figure out what the appropriate svelte type to extend off of is
   export interface LkCardProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/container/container.css";
+  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
+  import "$registry/sveltekit/components/container/container.css";
 
   interface LkContainerProps extends React.HTMLAttributes<HTMLDivElement> {
     maxWidth?: LkContainerWidth;

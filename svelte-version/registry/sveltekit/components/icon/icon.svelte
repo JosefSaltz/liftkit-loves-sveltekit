@@ -1,7 +1,7 @@
-<script lang="ts">
+<script lang="ts" context="module">
   import { Icon } from "@lucide/svelte";
 
-  import "@/registry/sveltekit/components/icon/icon.css";
+  import "$registry/sveltekit/components/icon/icon.css";
 
   export interface LkIconProps {
     name?: IconName;

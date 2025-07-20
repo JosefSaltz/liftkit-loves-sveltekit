@@ -1,8 +1,8 @@
 <script lang="ts">
-  import Icon from "@/registry/sveltekit/components/icon";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import Icon from "$registry/sveltekit/components/icon/icon.svelte";
+  import { getOnToken } from "$registry/universal/lib/colorUtils";
   import { IconName } from "lucide-react/dynamic";
-  import "@/registry/sveltekit/components/badge/badge.css";
+  import "$registry/sveltekit/components/badge/badge.css";
 
   export interface LkBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     icon?: IconName;
@@ -53,6 +53,6 @@
     </div>
   </div>
   {#if scrim} 
-    <div data-lk-component="badge-scrim" className={`bg-${iconColor}`}></div>
+    <div data-lk-component="badge-scrim" class={`bg-${iconColor}`}></div>
   {/if}
 </div>

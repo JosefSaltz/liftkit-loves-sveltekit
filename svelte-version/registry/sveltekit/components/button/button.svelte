@@ -1,12 +1,12 @@
 <script lang="ts">
   import { useMemo } from "react";
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
+  import { getOnToken } from "$registry/universal/lib/colorUtils";
   //import { IconName } from "lucide-react/dynamic";
-  import "@/registry/sveltekit/components/button/button.css";
-  import StateLayer from "@/registry/sveltekit/components/state-layer";
-  import { LkStateLayerProps } from "@/registry/nextjs/components/state-layer";
-  import Icon from "@/registry/sveltekit/components/icon";
+  import "$registry/sveltekit/components/button/button.css";
+  import StateLayer from "$registry/sveltekit/components/state-layer";
+  import { LkStateLayerProps } from "$registry/nextjs/components/state-layer";
+  import Icon from "$registry/sveltekit/components/icon";
 
   export interface LkButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     label?: string;

@@ -1,8 +1,8 @@
 <script lang="ts">
 
-import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-import "@/registry/nextjs/components/grid/grid.css";
-import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
+import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
+import "$registry/nextjs/components/grid/grid.css";
+import PlaceholderBlock from "$registry/sveltekit/components/placeholder-block";
 
 // The LiftkitGrid type definition
 // 

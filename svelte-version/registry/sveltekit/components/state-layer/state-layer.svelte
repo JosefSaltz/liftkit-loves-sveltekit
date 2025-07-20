@@ -1,5 +1,5 @@
 <script lang="ts">
-  import "@/registry/sveltekit/components/state-layer/state-layer.css";
+  import "$registry/sveltekit/components/state-layer/state-layer.css";
 
   export interface LkStateLayerProps {
     bgColor?: LkColor | "currentColor";
