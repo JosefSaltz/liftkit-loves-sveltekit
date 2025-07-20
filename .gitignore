@@ -17,6 +17,18 @@
 /.next/
 /out/
 
+# output
+.output
+.vercel
+.netlify
+.wrangler
+.svelte-kit
+/build
+
+# os
+.DS_Store
+Thumbs.db
+
 # production
 /build
 
@@ -31,7 +43,10 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # env files (can opt-in for committing if needed)
-.env*
+.env
+.env.*
+!.env.example
+!.env.test
 
 # vercel
 .vercel
@@ -47,3 +62,7 @@ public/r
 type-usage-report.csv
 type-usage-report.txt
 *.csv
+
+# vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
