@@ -1,22 +1,22 @@
 <script lang="ts">
   import styles from "./page.module.css";
-  import Section from "@/registry/nextjs/components/section";
-  import Text from "@/registry/nextjs/components/text";
-  import Row from "@/registry/nextjs/components/row";
+  import Section from "@/registry/sveltekit/components/section";
+  import Text from "@/registry/sveltekit/components/text";
+  import Row from "@/registry/sveltekit/components/row";
   
-  import Sticker from "@/registry/nextjs/components/sticker";
-  import Button from "@/registry/nextjs/components/button";
-  import Image from "@/registry/nextjs/components/image";
-  import Badge from "@/registry/nextjs/components/badge";
-  import Icon from "@/registry/nextjs/components/icon";
-  import Grid from "@/registry/nextjs/components/grid";
-  import TabContent from "@/registry/nextjs/components/tab-content";
-  import Tabs from "@/registry/nextjs/components/tabs";
-  import Card from "@/registry/nextjs/components/card";
+  import Sticker from "@/registry/sveltekit/components/sticker";
+  import Button from "@/registry/sveltekit/components/button";
+  import Image from "@/registry/sveltekit/components/image";
+  import Badge from "@/registry/sveltekit/components/badge";
+  import Icon from "@/registry/sveltekit/components/icon";
+  import Grid from "@/registry/sveltekit/components/grid";
+  import TabContent from "@/registry/sveltekit/components/tab-content";
+  import Tabs from "@/registry/sveltekit/components/tabs";
+  import Card from "@/registry/sveltekit/components/card";
   
-  import NavBar from "@/registry/nextjs/components/navbar";
-  import IconButton from "@/registry/nextjs/components/icon-button";
-  import ThemeController from "@/registry/nextjs/components/theme-controller";
+  import NavBar from "@/registry/sveltekit/components/navbar";
+  import IconButton from "@/registry/sveltekit/components/icon-button";
+  import ThemeController from "@/registry/sveltekit/components/theme-controller";
   
   const contentStyle: React.CSSProperties = {
     background: "#e0e0e0",
@@ -49,21 +49,24 @@
   // ];
 </script>
 
+
+
+
 <div className={styles.page}>
 <ThemeController/>
   <NavBar
     navButtons={[
-      <Button key="1" label="Home" variant="text" />,
-      <Button key="2" label="About" variant="text" />,
-      <Button key="3" label="Careers" variant="text" />,
+      () => <Button data-key="1" label="Home" variant="text" />,
+      () => <Button data-key="2" label="About" variant="text" />,
+      () => <Button data-key="3" label="Careers" variant="text" />,
     ]}
     iconButtons={[
-      <IconButton key="search" icon="search" variant="text" color="surfacecontainer" />,
-      <IconButton key="heart" icon="book" variant="text" color="surfacecontainer" />,
+      () => <IconButton data-key="search" icon="search" variant="text" color="surfacecontainer" />,
+      () => <IconButton data-key="heart" icon="book" variant="text" color="surfacecontainer" />,
     ]}
     ctaButtons={[
-      <Button key="secondary" label="Secondary" variant="outline" color="surface" />,
-      <Button key="primary" label="Primary" variant="fill" color="surfacecontainer" />,
+      () => <Button data-key="secondary" label="Secondary" variant="outline" color="surface" />,
+      () => <Button data-key="primary" label="Primary" variant="fill" color="surfacecontainer" />,
     ]}
   />
   <!--<Snackbar badgeColor="error" globalColor="surface" /> -->
@@ -99,11 +102,11 @@
     /> -->
   </div>
   <Tabs tabLinks={tabLabels}>
-    {tabLabels.map((label, index) => (
+    {#each tabLabels as (label, index)}
       <TabContent key={index}>
         <p>This is the content for {label}</p>
       </TabContent>
-    ))}
+    {/each}
   </Tabs>
 
   <Grid columns={2} gap="md">
@@ -408,11 +411,11 @@
       <Sticker content="Surface Variant" color="surfacevariant" />
     </div>
 
-    {variants.map((variant) => (
+    {#each variants as variant}
       <div key={variant}>
         <h2>{variant} Variant</h2>
         <div>
-          {buttonSizes.map((size) => (
+          {#each buttonSizes as size}
             <div key={`${variant}-${size}`}>
               <h3>Size: {size}</h3>
               <div>
@@ -441,14 +444,14 @@
                 </div>
               </div>
             </div>
-          ))}
+          {/each}
         </div>
       </div>
-    ))}
+    {/each}
 
     <!--SIZE TESTING -->
     <div className="size-test-grid">
-      {sizes.map((size) => (
+      {#each sizes as size}
         <figure key={size} className="size-test-item">
           <Image
             src="/testimage.png"
@@ -459,17 +462,17 @@
           />
           <figcaption className="size-test-caption">{size}</figcaption>
         </figure>
-      ))}
+      {/each}
     </div>
 
     <!--RADII TESTING -->
     <div className="radius-test-grid">
-      {radii.map((radius) => (
+      {#each radii as radius}
         <figure key={radius} className="radius-test-item">
           <Image src="/testimage.png" alt={radius} lk-image-border-radius={radius} className="radius-test-img" />
           <figcaption className="radius-test-caption">{radius}</figcaption>
         </figure>
-      ))}
+      {/each}
     </div>
 
     <!--OBJECT-FIT TESTING -->
