@@ -14,6 +14,7 @@
     "npm:@next/eslint-plugin-next@15.3.2": "15.3.2",
     "npm:@next/mdx@15.3.2": "15.3.2_@mdx-js+loader@3.1.0_@mdx-js+react@3.1.0__@types+react@19.1.5__react@19.1.0_@types+react@19.1.5_react@19.1.0",
     "npm:@sveltejs/adapter-auto@6": "6.0.1_@sveltejs+kit@2.25.1__@sveltejs+vite-plugin-svelte@6.1.0___svelte@5.36.10____acorn@8.15.0___vite@7.0.5____@types+node@20.19.9____picomatch@4.0.3___@types+node@20.19.9__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__acorn@8.15.0__@types+node@20.19.9_@sveltejs+vite-plugin-svelte@6.1.0__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__@types+node@20.19.9_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_@types+node@20.19.9",
+    "npm:@sveltejs/enhanced-img@0.7": "0.7.0_@sveltejs+vite-plugin-svelte@6.1.0__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__@types+node@20.19.9_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_@types+node@20.19.9",
     "npm:@sveltejs/kit@^2.22.0": "2.25.1_@sveltejs+vite-plugin-svelte@6.1.0__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__@types+node@20.19.9_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_acorn@8.15.0_@types+node@20.19.9",
     "npm:@sveltejs/vite-plugin-svelte@6": "6.1.0_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_@types+node@20.19.9",
     "npm:@tailwindcss/vite@4": "4.1.11_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_@types+node@20.19.9",
@@ -905,7 +906,7 @@
         "devlop",
         "estree-util-is-identifier-name",
         "estree-util-scope",
-        "estree-walker",
+        "estree-walker@3.0.3",
         "hast-util-to-jsx-runtime",
         "markdown-extensions",
         "recma-build-jsx",
@@ -1056,6 +1057,14 @@
     "@rolldown/pluginutils@1.0.0-beta.27": {
       "integrity": "sha512-+d0F4MKMCbeVUJwG96uQ4SgAznZNSq93I3V+9NHA4OpvqG8mRCpGdKmK8l/dl02h2CCDHwW2FqilnTyDcAnqjA=="
     },
+    "@rollup/pluginutils@5.2.0": {
+      "integrity": "sha512-qWJ2ZTbmumwiLFomfzTyt5Kng4hwPi9rwCYN4SHb6eaRU1KNO4ccxINHr/VhH4GgPlt1XfSTLX2LBTme8ne4Zw==",
+      "dependencies": [
+        "@types/estree",
+        "estree-walker@2.0.2",
+        "picomatch@4.0.3"
+      ]
+    },
     "@rollup/rollup-android-arm-eabi@4.45.1": {
       "integrity": "sha512-NEySIFvMY0ZQO+utJkgoMiCAjMrGvnbDLHvcmlA33UXJpYBCvlBEbMMtV837uCkS+plG2umfhn0T5mMAxGrlRA==",
       "os": ["android"],
@@ -1172,6 +1181,19 @@
       "integrity": "sha512-mcWud3pYGPWM2Pphdj8G9Qiq24nZ8L4LB7coCUckUEy5Y7wOWGJ/enaZ4AtJTcSm5dNK1rIkBRoqt+ae4zlxcQ==",
       "dependencies": [
         "@sveltejs/kit"
+      ]
+    },
+    "@sveltejs/enhanced-img@0.7.0_@sveltejs+vite-plugin-svelte@6.1.0__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__@types+node@20.19.9_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_@types+node@20.19.9": {
+      "integrity": "sha512-nvWETsp2IsUoRlt2dFg8swJ8BXmEAZCmOTpIrJ+SGGf54V+rYQ01IbIOPNkmzlejz0Tr0PmslzwMunie8eKU7A==",
+      "dependencies": [
+        "@sveltejs/vite-plugin-svelte",
+        "magic-string",
+        "sharp",
+        "svelte",
+        "svelte-parse-markup",
+        "vite",
+        "vite-imagetools",
+        "zimmerframe"
       ]
     },
     "@sveltejs/kit@2.25.1_@sveltejs+vite-plugin-svelte@6.1.0__svelte@5.36.10___acorn@8.15.0__vite@7.0.5___@types+node@20.19.9___picomatch@4.0.3__@types+node@20.19.9_svelte@5.36.10__acorn@8.15.0_vite@7.0.5__@types+node@20.19.9__picomatch@4.0.3_acorn@8.15.0_@types+node@20.19.9": {
@@ -1760,7 +1782,7 @@
       "integrity": "sha512-46ryTE9RZO/rfDd7pEqFl7etuyzekzEhUbTW3BvmeO/BcCMEgq59BKhek3dXDWgAj4oMK6OZi+vRr1wPW6qjEQ==",
       "dependencies": [
         "@vitest/spy",
-        "estree-walker",
+        "estree-walker@3.0.3",
         "magic-string",
         "vite"
       ],
@@ -2922,7 +2944,7 @@
         "@types/estree-jsx",
         "devlop",
         "estree-util-is-identifier-name",
-        "estree-walker"
+        "estree-walker@3.0.3"
       ]
     },
     "estree-util-is-identifier-name@3.0.0": {
@@ -2949,6 +2971,9 @@
         "@types/estree-jsx",
         "@types/unist@3.0.3"
       ]
+    },
+    "estree-walker@2.0.2": {
+      "integrity": "sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w=="
     },
     "estree-walker@3.0.3": {
       "integrity": "sha512-7RUKfXgSMMkzt6ZuXmqapOurLGPPfgj6l9uRZ7lRGolvk0y2yocc35LdcxKC5PQZdn2DMqioAQ2NoWcrTKmm6g==",
@@ -3393,6 +3418,9 @@
     },
     "ignore@7.0.5": {
       "integrity": "sha512-Hs59xBNfUIunMFgWAbGX5cq6893IbWg4KnrjbYwX3tx0ztorVgTDA6B2sxf8ejHJ4wz8BqGUMYlnzNBer5NvGg=="
+    },
+    "imagetools-core@7.1.0": {
+      "integrity": "sha512-8Aa4NecBBGmTkaAUjcuRYgTPKHCsBEWYmCnvKCL6/bxedehtVVFyZPdXe8DD0Nevd6UWBq85ifUaJ8498lgqNQ=="
     },
     "import-fresh@3.3.1": {
       "integrity": "sha512-TR3KfrTZTYLPB6jUjfx6MF9WcWrHL9su5TObK4ZkYgBdWKPOFoSoQIdEuTuR82pmtxH2spWG9h6etwfr1pLBqQ==",
@@ -5722,6 +5750,12 @@
         "svelte"
       ]
     },
+    "svelte-parse-markup@0.1.5_svelte@5.36.10__acorn@8.15.0": {
+      "integrity": "sha512-T6mqZrySltPCDwfKXWQ6zehipVLk4GWfH1zCMGgRtLlOIFPuw58ZxVYxVvotMJgJaurKi1i14viB2GIRKXeJTQ==",
+      "dependencies": [
+        "svelte"
+      ]
+    },
     "svelte@5.36.10_acorn@8.15.0": {
       "integrity": "sha512-hAjYQweQHM8VH5YEEf2+k9hGyMnd+oVHXoSA/eG607vViRk9qQO1g+Dvr29+yMuYQNScpOzHX3qcnC7LrcTGCQ==",
       "dependencies": [
@@ -6123,6 +6157,14 @@
         "vfile-message"
       ]
     },
+    "vite-imagetools@7.1.0": {
+      "integrity": "sha512-Mqh1uUY2DEMuBOogFz5Rd7cAs70VP6wsdQh2IShrJ+qGk5f7yQa4pN8w0YMLlGIKYW1JfM8oXrznUwVkhG+qxg==",
+      "dependencies": [
+        "@rollup/pluginutils",
+        "imagetools-core",
+        "sharp"
+      ]
+    },
     "vite-node@3.2.4_@types+node@20.19.9": {
       "integrity": "sha512-EbKSKh+bh1E1IFxeO0pg1n4dvoOTt0UDiXMd/qn++r98+jPO1xtJilvXldeuQ8giIB5IkpjCgMleHMNEsGH6pg==",
       "dependencies": [
@@ -6424,6 +6466,7 @@
         "npm:@next/eslint-plugin-next@15.3.2",
         "npm:@next/mdx@15.3.2",
         "npm:@sveltejs/adapter-auto@6",
+        "npm:@sveltejs/enhanced-img@0.7",
         "npm:@sveltejs/kit@^2.22.0",
         "npm:@sveltejs/vite-plugin-svelte@6",
         "npm:@tailwindcss/vite@4",

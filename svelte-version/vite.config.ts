@@ -1,10 +1,11 @@
 import tailwindcss from '@tailwindcss/vite';
 import { sveltekit } from '@sveltejs/kit/vite';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 import { defineConfig } from 'vite';
 import tsconfigPaths from "vite-tsconfig-paths";
 
 export default defineConfig({
-	plugins: [tailwindcss(), tsconfigPaths(), sveltekit()],
+	plugins: [tailwindcss(), tsconfigPaths(), enhancedImages(), sveltekit()],
 	test: {
 		projects: [
 			{
