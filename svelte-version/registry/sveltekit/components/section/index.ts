@@ -1,1 +1,1 @@
-export { default as Section } from "./section.svelte";
+export { default } from "./section.svelte";

@@ -1,1 +1,1 @@
-export { default as TabMenu} from "./tab-menu.svelte";
+export { default } from "./tab-menu.svelte";

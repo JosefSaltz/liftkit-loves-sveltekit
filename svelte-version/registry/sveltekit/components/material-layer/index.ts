@@ -1,1 +1,1 @@
-export { default as MaterialLayer } from "./material-layer.svelte"; 
+export { default } from "./material-layer.svelte"; 

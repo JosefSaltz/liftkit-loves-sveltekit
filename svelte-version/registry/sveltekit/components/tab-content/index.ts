@@ -1,1 +1,1 @@
-export { default as TabContent } from "./tab-content.svelte";
+export { default } from "./tab-content.svelte";

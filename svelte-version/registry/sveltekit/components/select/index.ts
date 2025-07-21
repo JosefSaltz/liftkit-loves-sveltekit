@@ -3,4 +3,4 @@ import SelectMenu from "./select-menu.svelte";
 import SelectOption from "./select-option.svelte";
 import SelectTrigger from "./select-trigger.svelte"
 
-export { Select, SelectMenu, SelectOption, SelectTrigger };
+export default { Select, SelectMenu, SelectOption, SelectTrigger };

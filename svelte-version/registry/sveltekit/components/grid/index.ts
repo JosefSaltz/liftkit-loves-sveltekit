@@ -1,1 +1,1 @@
-export { default as Grid } from "./grid.svelte";
+export { default } from "./grid.svelte";

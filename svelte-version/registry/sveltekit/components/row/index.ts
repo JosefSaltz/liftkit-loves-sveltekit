@@ -1,1 +1,1 @@
-export { default as Row } from "./row.svelte";
+export { default} from "./row.svelte";

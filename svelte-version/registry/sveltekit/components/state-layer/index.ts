@@ -1,1 +1,1 @@
-export { default as StateLayer } from "./state-layer.svelte";
+export { default } from "./state-layer.svelte";

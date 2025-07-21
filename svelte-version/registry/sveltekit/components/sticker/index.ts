@@ -1,1 +1,1 @@
-export { default as Sticker } from "./sticker.svelte";
+export { default } from "./sticker.svelte";

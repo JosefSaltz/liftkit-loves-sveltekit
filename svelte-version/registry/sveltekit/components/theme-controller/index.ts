@@ -1,1 +1,1 @@
-export { default as ThemeController } from "./theme-controller.svelte";
+export { default } from "./theme-controller.svelte";

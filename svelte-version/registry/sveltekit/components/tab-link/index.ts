@@ -1,1 +1,1 @@
-export { default as TabLink } from "./tab-link.svelte";
+export { default } from "./tab-link.svelte";

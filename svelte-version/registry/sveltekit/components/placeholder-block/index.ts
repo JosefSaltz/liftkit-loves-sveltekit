@@ -1,1 +1,1 @@
-export { default as PlaceholderBlock } from "./placeholder-block.svelte";
+export { default } from "./placeholder-block.svelte";
