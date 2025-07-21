@@ -11,8 +11,8 @@
  * 
  * @returns A styled img element with data attributes for CSS styling
  */
-import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-import "$registry/sveltekit/components/image/image.css";
+import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+import "@/registry/sveltekit/components/image/image.css";
 
 type LkAspectRatio =
   | "auto"
@@ -60,4 +60,4 @@ let {
 const attrs = $derived(propsToDataAttrs({ aspect, borderRadius, objectFit, width, height }, "image"));
 </script>
 
-<img data-lk-component="image" {...attrs} {...rest} alt="" />
+<enhanced:img data-lk-component="image" {...attrs} {...rest} alt="" />
