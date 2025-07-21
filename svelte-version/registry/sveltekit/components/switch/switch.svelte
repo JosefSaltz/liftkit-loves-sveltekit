@@ -1,5 +1,5 @@
 <script lang="ts">
-  // import "@/registry/nextjs/components/switch/switch.css";
+  // import "@/registry/sveltekit/components/switch/switch.css";
   import { getOnToken } from "@/registry/universal/lib/colorUtils";
 
   export interface LkSwitchProps {

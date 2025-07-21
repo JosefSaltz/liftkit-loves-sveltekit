@@ -1,11 +1,11 @@
 <script lang="ts">
   import { getContext } from "svelte"
-  import { ThemeContext } from "@/registry/nextjs/components/theme";
-  import Card from "@/registry/nextjs/components/card";
-  import Column from "@/registry/nextjs/components/column";
-  import Row from "@/registry/nextjs/components/row";
-  import Switch from "@/registry/nextjs/components/switch";
-  import IconButton from "@/registry/nextjs/components/icon-button";
+  import { ThemeContext } from "@/registry/sveltekit/components/theme";
+  import Card from "@/registry/sveltekit/components/card";
+  import Column from "@/registry/sveltekit/components/column";
+  import Row from "@/registry/sveltekit/components/row";
+  import Switch from "@/registry/sveltekit/components/switch";
+  import IconButton from "@/registry/sveltekit/components/icon-button";
 
   type LkColorGroup =
     | "master"

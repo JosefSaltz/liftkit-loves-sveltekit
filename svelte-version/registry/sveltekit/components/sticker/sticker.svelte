@@ -1,7 +1,7 @@
 <script lang="ts">
-  import Text from "$registry/sveltekit/components/text";
-  import "$registry/nextjs/components/sticker/sticker.css";
-  import { getOnToken } from "$registry/universal/lib/colorUtils";
+  import Text from "@/registry/sveltekit/components/text";
+  import "@/registry/sveltekit/components/sticker/sticker.css";
+  import { getOnToken } from "@/registry/universal/lib/colorUtils";
   import type { Snippet } from "svelte";
 
   /**

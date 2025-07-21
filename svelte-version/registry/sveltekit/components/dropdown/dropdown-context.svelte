@@ -1,7 +1,7 @@
 <script lang="ts" module>
   // CustomDropdown.tsx
-  import type { LkCardProps } from "$registry/sveltekit/components/card";
-  import "$registry/sveltekit/components/dropdown/dropdown.css";
+  import type { LkCardProps } from "@/registry/sveltekit/components/card";
+  import "@/registry/sveltekit/components/dropdown/dropdown.css";
   import { setContext, Snippet } from 'svelte';
 
   interface LkDropdownContext {

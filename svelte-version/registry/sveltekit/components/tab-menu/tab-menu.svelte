@@ -1,8 +1,8 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-  import Row from "$registry/sveltekit/components/row";
-  import TabLink from "$registry/sveltekit/components/tab-link";
-  import "$registry/sveltekit/components/tab-menu/tab-menu.css";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import Row from "@/registry/sveltekit/components/row";
+  import TabLink from "@/registry/sveltekit/components/tab-link";
+  import "@/registry/sveltekit/components/tab-menu/tab-menu.css";
   //  TODO: This needs to be a more correct Svelte typing
   interface LkTabMenuProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
     tabLinks?: string[];

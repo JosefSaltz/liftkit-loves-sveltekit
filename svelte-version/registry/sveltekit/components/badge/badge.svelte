@@ -1,10 +1,11 @@
 <script lang="ts">
-  import Icon from "$registry/sveltekit/components/icon/icon.svelte";
-  import { getOnToken } from "$registry/universal/lib/colorUtils";
-  import { IconName } from "lucide-react/dynamic";
-  import "$registry/sveltekit/components/badge/badge.css";
+  import Icon from "@/registry/sveltekit/components/icon";
+  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import type { IconName } from "lucide-react/dynamic";
+  import "@/registry/sveltekit/components/badge/badge.css";
+	import type { HTMLAttributes } from "svelte/elements";
 
-  export interface LkBadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+  export interface LkBadgeProps extends HTMLAttributes<HTMLDivElement> {
     icon?: IconName;
     color?: LkColorWithOnToken;
     scale?: "md" | "lg";

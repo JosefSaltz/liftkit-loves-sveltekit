@@ -1,21 +1,21 @@
 <script lang="ts">
   import { useMemo } from "react";
-  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-  import Badge from "$registry/sveltekit/components/badge";
-  import Button from "$registry/sveltekit/components/button";
-  import IconButton from "$registry/sveltekit/components/icon-button";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import Badge from "@/registry/sveltekit/components/badge";
+  import Button from "@/registry/sveltekit/components/button";
+  import IconButton from "@/registry/sveltekit/components/icon-button";
   import React from "react";
-  import Text from "$registry/sveltekit/components/text";
-  import "$registry/sveltekit/components/snackbar/snackbar.css";
-  import { LkBadgeProps } from "$registry/sveltekit/components/badge";
-  import { LkTextProps } from "$registry/sveltekit/components/text";
-  import { LkButtonProps } from "$registry/sveltekit/components/button";
-  import { LkIconButtonProps } from "$registry/sveltekit/components/icon-button";
+  import Text from "@/registry/sveltekit/components/text";
+  import "@/registry/sveltekit/components/snackbar/snackbar.css";
+  import { LkBadgeProps } from "@/registry/sveltekit/components/badge";
+  import { LkTextProps } from "@/registry/sveltekit/components/text";
+  import { LkButtonProps } from "@/registry/sveltekit/components/button";
+  import { LkIconButtonProps } from "@/registry/sveltekit/components/icon-button";
   import { getOnToken } from "@/registry/universal/lib/colorUtils";
-  import Card from "$registry/sveltekit/components/card";
-  import Row from "$registry/sveltekit/components/row";
-  import { LkCardProps } from "$registry/sveltekit/components/card";
-  import Icon, { LkIconProps } from "$registry/sveltekit/components/icon";
+  import Card from "@/registry/sveltekit/components/card";
+  import Row from "@/registry/sveltekit/components/row";
+  import { LkCardProps } from "@/registry/sveltekit/components/card";
+  import Icon, { LkIconProps } from "@/registry/sveltekit/components/icon";
 
   interface LkSnackbarProps extends React.HTMLAttributes<HTMLDivElement> {
     globalColor?: LkColorWithOnToken;

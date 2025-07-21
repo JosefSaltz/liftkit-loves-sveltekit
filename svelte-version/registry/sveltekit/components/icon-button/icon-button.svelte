@@ -1,9 +1,9 @@
 <script lang="ts">
   import { useMemo } from "react";
-  import { propsToDataAttrs } from "@/registry/nextjs/lib/utilities";
-  import "@/registry/nextjs/components/icon-button/icon-button.css";
-  import Icon from "@/registry/nextjs/components/icon";
-  import StateLayer from "@/registry/nextjs/components/state-layer";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/icon-button/icon-button.css";
+  import Icon from "@/registry/sveltekit/components/icon";
+  import StateLayer from "@/registry/sveltekit/components/state-layer";
   import { IconName } from "lucide-react/dynamic";
   import { getOnToken } from "@/registry/universal/lib/colorUtils";
 

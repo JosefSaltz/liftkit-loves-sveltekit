@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-  import "$registry/sveltekit/components/text-input/text-input.css";
-  import Icon from "$registry/sveltekit/components/icon";
-  import Row from "$registry/sveltekit/components/row";
-  import Text from "$registry/sveltekit/components/text";
-  import StateLayer from "$registry/sveltekit/components/state-layer";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/text-input/text-input.css";
+  import Icon from "@/registry/sveltekit/components/icon";
+  import Row from "@/registry/sveltekit/components/row";
+  import Text from "@/registry/sveltekit/components/text";
+  import StateLayer from "@/registry/sveltekit/components/state-layer";
   import { IconName } from "lucide-react/dynamic";
   import { truncateSync } from "node:fs";
   Text;

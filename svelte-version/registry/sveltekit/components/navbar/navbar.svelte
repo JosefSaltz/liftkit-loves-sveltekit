@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-  import Image from "$registry/sveltekit/components/image";
-  import IconButton from "$registry/sveltekit/components/icon-button";
-  import Row from "$registry/sveltekit/components/row";
-  import Column from "$registry/sveltekit/components/column";
-  import "$registry/sveltekit/components/navbar/navbar.css";
-  import MaterialLayer from "$registry/sveltekit/components/material-layer";
-  import PlaceholderBlock from "$registry/sveltekit/components/placeholder-block";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import Image from "@/registry/sveltekit/components/image";
+  import IconButton from "@/registry/sveltekit/components/icon-button";
+  import Row from "@/registry/sveltekit/components/row";
+  import Column from "@/registry/sveltekit/components/column";
+  import "@/registry/sveltekit/components/navbar/navbar.css";
+  import MaterialLayer from "@/registry/sveltekit/components/material-layer";
+  import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
 
   interface LkNavBarProps extends React.HTMLAttributes<HTMLDivElement> {
     material?: LkMaterial;

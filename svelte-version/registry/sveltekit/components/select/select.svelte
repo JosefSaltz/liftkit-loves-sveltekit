@@ -2,12 +2,12 @@
 
 // CustomSelect.tsx
 import { setContext } from "svelte";
-import Card, { LkCardProps } from "$registry/sveltekit/components/card";
-import Column from "$registry/sveltekit/components/column";
-import Icon from "$registry/sveltekit/components/icon";
-import { LkIconProps } from "$registry/sveltekit/components/icon";
-import "$registry/sveltekit/components/select/select.css";
-import StateLayer from "$registry/sveltekit/components/state-layer";
+import Card, { LkCardProps } from "@/registry/sveltekit/components/card";
+import Column from "@/registry/sveltekit/components/column";
+import Icon from "@/registry/sveltekit/components/icon";
+import { LkIconProps } from "@/registry/sveltekit/components/icon";
+import "@/registry/sveltekit/components/select/select.css";
+import StateLayer from "@/registry/sveltekit/components/state-layer";
 
 interface Option {
   label: string;

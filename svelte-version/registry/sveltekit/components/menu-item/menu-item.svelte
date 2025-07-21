@@ -21,12 +21,12 @@
  * ```
  */
 import { useMemo } from "react";
-import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-import "$registry/sveltekit/components/menu-item/menu-item.css";
-import StateLayer from "$registry/sveltekit/components/state-layer";
+import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+import "@/registry/sveltekit/components/menu-item/menu-item.css";
+import StateLayer from "@/registry/sveltekit/components/state-layer";
 import type { IconName } from "lucide-react/dynamic";
-import Icon from "$registry/sveltekit/components/icon";
-import { LkIconProps } from "$registry/sveltekit/components/icon";
+import Icon from "@/registry/sveltekit/components/icon";
+import { LkIconProps } from "@/registry/sveltekit/components/icon";
 
 interface LkMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
   startIcon?: LkIconProps;
