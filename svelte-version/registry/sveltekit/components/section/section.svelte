@@ -1,24 +1,24 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/nextjs/lib/utilities";
-  import "$registry/sveltekit/components/section/section.css";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/section/section.css";
+	import type { Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
   type SpacingSize = "xs" | "sm" | "md" | "lg" | "xl" | "none";
 
-  interface LkSectionProps extends React.HTMLAttributes<HTMLElement> {
+  interface LkSectionProps extends HTMLAttributes<HTMLElement> {
     padding?: SpacingSize;
-    container?: React.ReactNode;
+    container?: Snippet;
     px?: SpacingSize;
     py?: SpacingSize;
     pt?: SpacingSize;
     pb?: SpacingSize;
     pl?: SpacingSize;
     pr?: SpacingSize;
-    children?: React.ReactNode;
+    children?: Snippet;
   }
 
-  let { props }: { props: LkSectionProps} = $props();
-  //TODO:  Give section default padding of "md" */
-  const { container, children, padding, px, py, pt, pb, pl, pr, ...restProps } = props;
+  let { container, children, padding, px, py, pt, pb, pl, pr, ...restProps }: LkSectionProps = $props();
 
   const lkSectionAttrs = $derived(
     propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, "section"),
@@ -27,5 +27,10 @@
 </script>
 
 <section {...lkSectionAttrs} {...restProps}>
-  <div data-lk-component="section">{container || children}</div>
+  <div data-lk-component="section">
+    {#if container}
+      {@render container()}
+    {:else}
+      {@render children?.()}
+    {/if}
 </section>

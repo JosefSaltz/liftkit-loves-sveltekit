@@ -1,12 +1,14 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/nextjs/lib/utilities";
-  import TabMenu from "@/registry/nextjs/components/tab-menu";
-  import "@/registry/nextjs/components/tabs/tabs.css";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import TabMenu from "@/registry/sveltekit/components/tab-menu";
+  import "@/registry/sveltekit/components/tabs/tabs.css";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
 
 
-  interface LkTabsProps extends React.HTMLAttributes<HTMLDivElement> {
+  interface LkTabsProps extends HTMLAttributes<HTMLDivElement> {
     tabLinks: string[];
-    children: React.ReactNode[];
+    children: Snippet;
     scrollableContent?: boolean; // Optional prop to enable scrollable content
     onActiveTabChange?: (index: number) => void; // Optional function to lift state
   }
@@ -40,7 +42,7 @@
   />
   <div data-lk-tabs-el="tab-content" data-lk-tabs-content-scrollable={scrollableContent}>
     {#each children as child, index}
-      <div data-key={index} style={{ display: index === activeTab ? "block" : "none" }}>
+      <div data-key={index} style:display={index === activeTab ? "block" : "none" }>
         { child }
       </div>
     {/each}

@@ -1,10 +1,12 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "$registry/sveltekit/lib/utilities";
-  import "$registry/sveltekit/components/card/card.css";
-  import MaterialLayer from "$registry/sveltekit/components/material-layer";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/card/card.css";
+  import MaterialLayer from "@/registry/sveltekit/components/material-layer";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
 
   // TODO: Figure out what the appropriate svelte type to extend off of is
-  export interface LkCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  export interface LkCardProps extends HTMLAttributes<HTMLDivElement> {
     scaleFactor?: LkFontClass | "none";
     variant?: "fill" | "outline" | "transparent";
     material?: "flat" | "glass"; //TODO: Integrate these material controls with the new MaterialLayer component features
@@ -13,7 +15,7 @@
     isClickable?: boolean;
     bgColor?: LkColorWithOnToken | "transparent"; //optional. does not need to have an "on" token because handled via bg global utility class, which assigns text color
     className?: string; //optional. explicitly listing here because we need to control how it mixes in with other styles controlled by classes
-    children?: React.ReactNode;
+    children?: Snippet;
     isScrollable?: boolean; //optional. if true, will add overflow-y: scroll to the card
     
   }
@@ -53,11 +55,11 @@
 
 <div
   data-lk-component="card"
-  className={`${isClickable ? "clickable" : ""}  ${className || ""}`}
+  class={`${isClickable ? "clickable" : ""}  ${className || ""}`}
   {...lkCardAttrs}
   {...restProps}
 >
-  <div data-lk-card-element="padding-box" className={isScrollable ? "overflow-auto" : ""} data-lk-card-optical-correction={opticalCorrection}>
+  <div data-lk-card-element="padding-box" class={isScrollable ? "overflow-auto" : ""} data-lk-card-optical-correction={opticalCorrection}>
     <div data-lk-component="slot" data-lk-slot="children">
       {children}
     </div>

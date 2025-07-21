@@ -1,16 +1,7 @@
-<script lang="ts" context="module">
+<script lang="ts">
   import { Icon } from "@lucide/svelte";
-
-  import "$registry/sveltekit/components/icon/icon.css";
-
-  export interface LkIconProps {
-    name?: IconName;
-    fontClass?: Exclude<LkFontClass, `${string}-bold` | `${string}-mono`>;
-    color?: LkColor | "currentColor";
-    display?: "block" | "inline-block" | "inline";
-    strokeWidth?: number;
-    opticShift?: boolean; //if true, pulls icon slightly upward
-  }
+  import "@/registry/sveltekit/components/icon/icon.css";
+	import type { LkIconProps } from "./types";
 
   let {
     name = "roller-coaster",
@@ -19,7 +10,7 @@
     strokeWidth = 2,
     opticShift = false,
     ...restProps
-  } = $props()
+  }: LkIconProps = $props();
 </script>
 
 <div data-lk-component="icon" data-lk-icon-offset={opticShift} {...restProps} data-lk-icon-font-class={fontClass} >
