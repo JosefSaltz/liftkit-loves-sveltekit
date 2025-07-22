@@ -2,12 +2,14 @@
   import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
   import Text from "@/registry/sveltekit/components/text";
   import "@/registry/sveltekit/components/tab-link/tab-link.css";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
   // TODO: This needs more Svelte correct typing
-  interface LkTabLinkProps extends React.HTMLAttributes<HTMLDivElement> {
+  interface LkTabLinkProps extends HTMLAttributes<HTMLDivElement> {
     selected?: boolean;
     fontClass?: LkFontClass;
     indicatorClass?: string;
-    children?: React.ReactElement<HTMLDivElement>;
+    children?: Snippet;
   }
 
   let {
@@ -16,7 +18,7 @@
     indicatorClass = "lk-indicator",
     children,
     ...restProps
-  }: LkTabLinkProps = props();
+  }: LkTabLinkProps = $props();
 
   // TODO: This might need to be changed to $derived instead
   const dataAttrs = $derived(propsToDataAttrs({ selected, fontClass, indicatorClass }, "tab-link"));
@@ -24,8 +26,8 @@
 
 <div data-lk-component="tab-link" {...dataAttrs} {...restProps}>
   <div data-lk-slot="child">
-    <Text fontClass={fontClass} style={selected ? { fontWeight: 700 } : {}}>
-      {@render children()}
+    <Text fontClass={fontClass} style:fontWeight={selected ? 700 : ''}>
+      {@render children?.()}
     </Text>
   </div>
   <div class={indicatorClass}></div>

@@ -3,8 +3,9 @@
   import Row from "@/registry/sveltekit/components/row";
   import TabLink from "@/registry/sveltekit/components/tab-link";
   import "@/registry/sveltekit/components/tab-menu/tab-menu.css";
+	import type { HTMLAttributes } from "svelte/elements";
   //  TODO: This needs to be a more correct Svelte typing
-  interface LkTabMenuProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'onClick'> {
+  interface LkTabMenuProps extends Omit<HTMLAttributes<HTMLDivElement>, 'onClick'> {
     tabLinks?: string[];
     alignItems?: "start" | "center" | "end" | "stretch";
     justifyContent?: "start" | "center" | "end" | "space-between" | "space-around";
@@ -32,7 +33,7 @@
 <div data-lk-component="tab-menu" {...dataAttrs} {...restProps}>
   <Row alignItems={alignItems} justifyContent={justifyContent}>
     {#each tabLinks as label, index}
-      <TabLink data-key={index} selected={index === activeTab} onClick={() => setActiveTab(index)}>
+      <TabLink data-key={index} selected={index === activeTab} onclick={() => setActiveTab(index)}>
         <div>{label ?? "Tab Link"}</div>
       </TabLink>
     {/each}

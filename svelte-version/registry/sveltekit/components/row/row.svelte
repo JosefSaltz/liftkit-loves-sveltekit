@@ -1,13 +1,13 @@
 <script lang="ts">
-  import { useMemo } from "react";
-  import { propsToDataAttrs } from "@/registry/nextjs/lib/utilities";
-  import "@/registry/nextjs/components/row/row.css";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/row/row.css";
+	import type { HTMLAttributes } from "svelte/elements";
 
-  interface LkRowProps extends React.HTMLAttributes<HTMLDivElement> {
+  interface LkRowProps extends HTMLAttributes<HTMLDivElement> {
     alignItems?: "start" | "center" | "end" | "stretch";
     justifyContent?: "start" | "center" | "end" | "space-between" | "space-around";
     gap?: LkSizeUnit;
-    wrapChildren?: boolean;
+    wrapChildren?: string | boolean; // Extended with string to deal with props typecasting issue of booleans
     defaultChildBehavior?: "auto-grow" | "auto-shrink" | "ignoreFlexRules" | "ignoreIntrinsicSize";
   }
 
@@ -27,5 +27,5 @@
 </script>
 
 <div {...lkRowAttrs} {...restProps} data-lk-component="row">
-  {@render children()}
+  {@render children?.()}
 </div>

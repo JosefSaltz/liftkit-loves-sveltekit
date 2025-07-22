@@ -3,6 +3,7 @@
   import "@/registry/sveltekit/components/sticker/sticker.css";
   import { getOnToken } from "@/registry/universal/lib/colorUtils";
   import type { Snippet } from "svelte";
+	import type { HTMLAttributes } from "svelte/elements";
 
   /**
    * Props for the LkSticker component.
@@ -12,7 +13,7 @@
    * @param children - Optional React nodes to render inside the sticker
    * @param className - Optional CSS class name (note: internal logic controls rendering order)
    */
-  interface LkStickerProps extends React.HTMLAttributes<HTMLDivElement> {
+  interface LkStickerProps extends HTMLAttributes<HTMLDivElement> {
     fontClass?: LkFontClass;
     bgColor?: LkColor; // supports all LkColors instead of only those with on-token support
     children?: Snippet;

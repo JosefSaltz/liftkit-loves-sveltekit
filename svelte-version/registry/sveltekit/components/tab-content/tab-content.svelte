@@ -1,9 +1,9 @@
 <script lang="ts">
-  import type { ReactNode } from "react";
   import "@/registry/sveltekit/components/tab-content/tab-content.css";
+	import type { Snippet } from "svelte";
 
   interface TabContentProps {
-    children: ReactNode;
+    children: Snippet;
   }
   let { children }: TabContentProps = $props();
 </script>
