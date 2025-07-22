@@ -6,8 +6,9 @@
   import StateLayer from "@/registry/sveltekit/components/state-layer";
   import { LkStateLayerProps } from "@/registry/sveltekit/components/state-layer";
   import Icon from "@/registry/sveltekit/components/icon";
+	import type { HTMLAttributes } from "svelte/elements";
 
-  export interface LkButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  export interface LkButtonProps extends HTMLAttributes<HTMLButtonElement> {
     label?: string;
     variant?: "fill" | "outline" | "text";
     color?: LkColorWithOnToken;
@@ -108,7 +109,7 @@
   {...restProps}
   type="button"
   data-lk-component="button"
-  className={`${baseButtonClasses} ${modifiers || ""}`}
+  class={`${baseButtonClasses} ${modifiers || ""}`}
 >
   <div data-lk-button-content-wrap="true">
     {#if startIcon}
