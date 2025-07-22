@@ -1,7 +1,7 @@
 <script lang="ts">
   import { Icon } from "@lucide/svelte";
   import "@/registry/sveltekit/components/icon/icon.css";
-	import type { LkIconProps } from "./types";
+	import type { LkIconProps } from "./icon.types";
 
   let {
     name = "roller-coaster",

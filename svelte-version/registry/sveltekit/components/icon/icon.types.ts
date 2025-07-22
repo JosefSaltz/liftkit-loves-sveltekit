@@ -1,3 +1,5 @@
+import type { IconName } from "lucide-react/dynamic";
+
 export interface LkIconProps {
   name?: IconName;
   fontClass?: Exclude<LkFontClass, `${string}-bold` | `${string}-mono`>;
