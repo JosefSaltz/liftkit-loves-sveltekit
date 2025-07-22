@@ -6,12 +6,13 @@
   import StateLayer from "@/registry/sveltekit/components/state-layer";
   import { IconName } from "lucide-react/dynamic";
   import { getOnToken } from "@/registry/universal/lib/colorUtils";
+	import type { HTMLAttributes } from "svelte/elements";
 
   declare global {
     type LkIconButtonSize = "xs" | "sm" | "md" | "lg" | "xl";
   }
   // TODO: Need to pick a good candidate to use as a replacement type
-  interface LkIconButtonBaseProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  interface LkIconButtonBaseProps extends HTMLAttributes<HTMLButtonElement> {
     icon: IconName;
     size?: LkIconButtonSize;
     fontClass?: LkFontClass; //optional, if present it will control the size directly via fontClass
@@ -26,16 +27,16 @@
     color?: IconButtonColor<T>;
   }
 
-  export default function IconButton<T extends "fill" | "outline" | "text" = "fill">({
+  let {
     icon = "roller-coaster",
-    variant = "fill" as T,
-    color = "primary" as IconButtonColor<T>,
+    variant = "fill" as IconButtonColor,
+    color = "primary" as IconButtonColor,
     size = "md",
     fontClass = "body",
     className,
     ...restProps
-  }: LkIconButtonProps<T>) {
-    const dataAttrs = useMemo(() => propsToDataAttrs({ variant, color, size }, "icon-button"), [variant, color, size]);
+  }: LkIconButtonProps = $props();
+    const dataAttrs = $derived(propsToDataAttrs({ variant, color, size }, "icon-button"));
 
     const onToken = getOnToken(color) as LkColor;
 
