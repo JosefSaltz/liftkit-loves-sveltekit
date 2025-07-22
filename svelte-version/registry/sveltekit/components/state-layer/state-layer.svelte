@@ -6,13 +6,12 @@
     forcedState?: "hover" | "active" | "focus"; // Used when you need a static state controlled by something higher, like a select field that keeps actively-selected options grayed out
   }
 
-  let { bgColor = "currentColor", forcedState }: LkStateLayerProps = $props() 
-
+  let { bgColor = "currentColor", forcedState }: LkStateLayerProps = $props();
 </script>
 
 <div
   data-lk-component="state-layer"
-  className={bgColor !== "currentColor" ? `bg-${bgColor}` : ""}
-  style={bgColor === "currentColor" ? { backgroundColor: "currentColor" } : {}}
+  class={bgColor !== "currentColor" ? `bg-${bgColor}` : ""}
+  style:backgroundColor={bgColor === "currentColor" ? "currentColor" : ''}
   {...(forcedState && { "data-lk-forced-state": forcedState })}
 ></div>
