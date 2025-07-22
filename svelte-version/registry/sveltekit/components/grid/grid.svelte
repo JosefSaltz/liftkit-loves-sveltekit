@@ -1,12 +1,13 @@
 <script lang="ts">
-
-import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-import "@/registry/sveltekit/components/grid/grid.css";
-import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
+  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import "@/registry/sveltekit/components/grid/grid.css";
+  import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
 
 // The LiftkitGrid type definition
 // 
-interface LkGridProps extends React.HTMLAttributes<HTMLDivElement> {
+interface LkGridProps extends HTMLAttributes<HTMLDivElement> {
   columns?: number;
   gap?: LkSizeUnit;
   autoResponsive?: boolean; // Mark as optional since we provide a default
@@ -27,36 +28,36 @@ interface LkGridProps extends React.HTMLAttributes<HTMLDivElement> {
  * @returns A div element with grid layout styling and data attributes
  */
 
-let {
-  columns = 2,
-  gap = "md",
-  autoResponsive = false, // Default value
-  children,
-  className,
-  ...restProps
-}: LkGridProps = $props() 
-
+  let {
+    columns = 2,
+    gap = "md",
+    autoResponsive = false, // Default value
+    children,
+    className = "",
+    ...restProps
+  }: LkGridProps = $props() 
+  const columnCount = {};
   const lkGridAttrs = $derived(propsToDataAttrs({ autoResponsive, gap, ...restProps }, "grid"));
 
+  // NextJS version
+  // Implemented as Svelte's Templative Syntax
+
   /**Render placeholder blocks for columns if no children are passed */
+  // let placeholderBlocks: Snippet[] = [];
 
-  let placeholderBlocks = [];
-
-  if (!children) {
-    for (let i = 0; i < columns; i++) {
-      placeholderBlocks.push(<PlaceholderBlock key={i * 2} />);
-      if (!className) {
-        placeholderBlocks.push(<PlaceholderBlock key={i * 2 + 1} />);
-      }
-    }
-    children = placeholderBlocks;
-  }
+  // if (!children) {
+  //   for (let i = 0; i < columns; i++) {
+  //     placeholderBlocks.push(<PlaceholderBlock key={i * 2} />);
+  //     if (!className) {
+  //       placeholderBlocks.push(<PlaceholderBlock key={i * 2 + 1} />);
+  //     }
+  //   }
+  //   children = placeholderBlocks;
+  // }
 
   function getColumnCount() {
     if (!className) return `repeat(${columns}, 1fr)`;
   }
-
-  const columnCount = {};
 </script>
 
 
@@ -64,8 +65,19 @@ let {
   data-lk-component="grid"
   {...lkGridAttrs}
   {...restProps}
-  className={className}
-  style={{ gridTemplateColumns: getColumnCount(), ...restProps.style }}
->
-  {@render children() || placeholderBlocks}
+  class={className}
+  style:gridTemplateColumns={getColumnCount()}
+> {#if children}
+    {@render children() }
+    <!-- Render placeholder blocks for columns if no children are passed -->
+    {:else}
+    {#each Array.from({length: columns}) as column, i}
+      {#if !className}
+        <PlaceholderBlock data-key={i * 2 + 1} />
+      {:else}
+        <PlaceholderBlock data-key={i * 2} />
+      {/if}
+    {/each}
+  {/if}
+  
 </div>
