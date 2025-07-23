@@ -1,12 +1,12 @@
 <script lang="ts">
   import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import { getOnToken } from "";
   //import { IconName } from "lucide-react/dynamic";
   import "@/registry/sveltekit/components/button/button.css";
   import StateLayer from "@/registry/sveltekit/components/state-layer";
   import { LkStateLayerProps } from "@/registry/sveltekit/components/state-layer";
   import Icon from "@/registry/sveltekit/components/icon";
 	import type { HTMLAttributes } from "svelte/elements";
+	import { getOnToken } from "@/registry/universal/lib/colorUtils";
 
   export interface LkButtonProps extends HTMLAttributes<HTMLButtonElement> {
     label?: string;
