@@ -75,7 +75,7 @@ interface PaletteState {
   [key: string]: string; // Add index signature for string keys
 }
 
-interface ThemeContextType {
+export interface ThemeContextType {
   theme: ThemeState;
   updateTheme: (palette: PaletteState) => Promise<void>;
   updateThemeFromMaster: (

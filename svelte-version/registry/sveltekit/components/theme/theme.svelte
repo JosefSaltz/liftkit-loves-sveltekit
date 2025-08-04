@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { setContext, onMount, Snippet } from "svelte";
+  import { setContext, onMount, getContext } from "svelte";
   import materialDynamicColors from "material-dynamic-colors";
   import { hexFromArgb, argbFromHex, TonalPalette, Hct, customColor } from "@material/material-color-utilities";
 
@@ -73,25 +73,6 @@
     info: string;
     [key: string]: string; // Add index signature for string keys
   }
-
-  interface ThemeContextType {
-    theme: ThemeState;
-    updateTheme: (palette: PaletteState) => Promise<void>;
-    updateThemeFromMaster: (
-      hexCode: string,
-      setPalette: React.Dispatch<React.SetStateAction<PaletteState>>
-    ) => Promise<void>;
-    palette: PaletteState;
-    setPalette: React.Dispatch<React.SetStateAction<PaletteState>>;
-    colorMode: "light" | "dark";
-    setColorMode: React.Dispatch<React.SetStateAction<"light" | "dark">>;
-
-    //todo: why are these here?
-    navIsOpen: boolean;
-    setNavIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  }
-
-  let { children }: { children: Snippet } = $props();
   
   let theme = $state<ThemeState>({
     light: {
@@ -195,7 +176,6 @@
       onInfoContainer: "#001550",
     },
   });
-  const setTheme = (state) => { theme = state }
   /**
    * REPLACE THE BELOW IF USING THE CHAINLIFT THEME BUILDER
    *
@@ -278,34 +258,22 @@
     return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
 
-  const getTonesFromKeyColors = (palette: PaletteState) => {
-    class TonalSwatches {
-      [key: string]: any; // Add index signature for string keys
+  // Unused, doesn't appear to do anything
+  // const getTonesFromKeyColors = (palette: PaletteState) => {
+  //   class TonalSwatches {
+  //     [key: string]: any; // Add index signature for string keys
 
-      constructor(hue: number, chroma: number) {
-        const swatch = TonalPalette.fromHueAndChroma(hue, chroma);
+  //     constructor(hue: number, chroma: number) {
+  //       const swatch = TonalPalette.fromHueAndChroma(hue, chroma);
 
-        for (let i = 1; i <= 99; i++) {
-          this[`_${i}`] = hexFromArgb(swatch.tone(i));
-        }
-      }
-    }
-  };
+  //       for (let i = 1; i <= 99; i++) {
+  //         this[`_${i}`] = hexFromArgb(swatch.tone(i));
+  //       }
+  //     }
+  //   }
+  // };
 
-  // Define the updateTheme function
-  // Linter may throw issues because at the moment async functions are not allowed for onMount
-  onMount(async (palette: PaletteState) => {
-    class TonalSwatches {
-      [key: string]: any; // Add index signature for string keys
-
-      constructor(hue: number, chroma: number) {
-        const swatch = TonalPalette.fromHueAndChroma(hue, chroma);
-
-        for (let i = 1; i <= 99; i++) {
-          this[`_${i}`] = hexFromArgb(swatch.tone(i));
-        }
-      }
-    }
+   const updateTheme = async (palette: PaletteState) => {
 
     Object.keys(palette).forEach((key) => {
       var argb = argbFromHex(palette[key]);
@@ -314,148 +282,269 @@
       var tones = new TonalSwatches(hct.hue, hct.chroma);
 
       // map the tones from each color group to a swatch name
-
       switch (key) {
         case "neutral":
-          setTheme((prevTheme) => ({
-            ...prevTheme,
-
-            light: {
-              ...prevTheme.light,
-              background: tones._99,
-              onBackground: tones._10,
-              surfaceDim: tones._87,
-              surface: tones._98,
-              surfaceBright: tones._98,
-              surfaceContainerLowest: "white",
-              surfaceContainerLow: tones._96,
-              surfaceContainer: tones._94,
-              surfaceContainerHigh: tones._92,
-              surfaceContainerHighest: tones._90,
-              onSurface: tones._10,
-              inverseSurface: tones._20,
-              inverseOnSurface: tones._95,
-            },
-            dark: {
-              ...prevTheme.dark,
-              background: tones._10,
-              onBackground: tones._85,
-              surfaceContainerLowest: tones._4,
-              surfaceDim: tones._6,
-              surface: tones._6,
-              surfaceContainerLow: tones._10,
-              surfaceContainer: tones._12,
-              surfaceContainerHigh: tones._17,
-              surfaceContainerHighest: tones._22,
-              surfaceBright: tones._24,
-              onSurface: tones._90,
-              inverseSurface: tones._98,
-              inverseOnSurface: tones._10,
-            },
-          }));
+          theme.light = {
+            ...theme.light,
+            background: tones._99,
+            onBackground: tones._10,
+            surfaceDim: tones._87,
+            surface: tones._98,
+            surfaceBright: tones._98,
+            surfaceContainerLowest: "white",
+            surfaceContainerLow: tones._96,
+            surfaceContainer: tones._94,
+            surfaceContainerHigh: tones._92,
+            surfaceContainerHighest: tones._90,
+            onSurface: tones._10,
+            inverseSurface: tones._20,
+            inverseOnSurface: tones._95,
+          };
+          theme.dark = {
+            ...theme.dark,
+            background: tones._10,
+            onBackground: tones._85,
+            surfaceContainerLowest: tones._4,
+            surfaceDim: tones._6,
+            surface: tones._6,
+            surfaceContainerLow: tones._10,
+            surfaceContainer: tones._12,
+            surfaceContainerHigh: tones._17,
+            surfaceContainerHighest: tones._22,
+            surfaceBright: tones._24,
+            onSurface: tones._90,
+            inverseSurface: tones._98,
+            inverseOnSurface: tones._10,
+          };
           break;
         case "neutralvariant":
-          setTheme((prevTheme) => ({
-            ...prevTheme,
-
-            light: {
-              ...prevTheme.light,
-              surfaceVariant: tones._80,
-              onSurfaceVariant: tones._40,
-              outline: tones._60,
-              outlineVariant: tones._90,
-            },
-
-            dark: {
-              ...prevTheme.dark,
-              surfaceVariant: tones._20,
-              onSurfaceVariant: tones._60,
-              outline: tones._50,
-              outlineVariant: tones._30,
-            },
-          }));
+          theme.light = {
+            ...theme.light,
+            surfaceVariant: tones._80,
+            onSurfaceVariant: tones._40,
+            outline: tones._60,
+            outlineVariant: tones._90,
+          };
+          theme.dark = {
+            ...theme.dark,
+            surfaceVariant: tones._20,
+            onSurfaceVariant: tones._60,
+            outline: tones._50,
+            outlineVariant: tones._30,
+          };
           break;
         case "primary":
-          setTheme((prevTheme) => ({
-            ...prevTheme,
-
-            light: {
-              ...prevTheme.light,
-              [key]: tones._40,
-              [`on${toSentenceCase(key)}`]: tones._98,
-              [`${key}Container`]: tones._90,
-              [`on${toSentenceCase(key)}Container`]: tones._10,
-              [`${key}Fixed`]: tones._90,
-              [`${key}FixedDim`]: tones._80,
-              [`on${toSentenceCase(key)}Fixed`]: tones._10,
-              [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
-              ["inversePrimary"]: tones._80,
-            },
-            dark: {
-              ...prevTheme.dark,
-              [key]: tones._80,
-              [`on${toSentenceCase(key)}`]: tones._20,
-              [`${key}Container`]: tones._30,
-              [`on${toSentenceCase(key)}Container`]: tones._90,
-              [`${key}Fixed`]: tones._90,
-              [`${key}FixedDim`]: tones._80,
-              [`on${toSentenceCase(key)}Fixed`]: tones._10,
-              [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
-              ["inversePrimary"]: tones._80,
-            },
-          }));
+          theme.light = {
+            ...theme.light,
+            [key]: tones._40,
+            [`on${toSentenceCase(key)}`]: tones._98,
+            [`${key}Container`]: tones._90,
+            [`on${toSentenceCase(key)}Container`]: tones._10,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+            ["inversePrimary"]: tones._80,
+          };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+            ["inversePrimary"]: tones._80,
+          };
           break;
         case "secondary":
         case "tertiary":
-          setTheme((prevTheme) => ({
-            ...prevTheme,
-            light: {
-              ...prevTheme.light,
-              [key]: tones._40,
-              [`on${toSentenceCase(key)}`]: tones._98,
-              [`${key}Container`]: tones._90,
-              [`on${toSentenceCase(key)}Container`]: tones._10,
-              [`${key}Fixed`]: tones._90,
-              [`${key}FixedDim`]: tones._80,
-              [`on${toSentenceCase(key)}Fixed`]: tones._10,
-              [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
-            },
-            dark: {
-              ...prevTheme.dark,
-              [key]: tones._80,
-              [`on${toSentenceCase(key)}`]: tones._20,
-              [`${key}Container`]: tones._30,
-              [`on${toSentenceCase(key)}Container`]: tones._90,
-              [`${key}Fixed`]: tones._90,
-              [`${key}FixedDim`]: tones._80,
-              [`on${toSentenceCase(key)}Fixed`]: tones._10,
-              [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
-            },
-          }));
+          theme.light = {
+            ...theme.light,
+            [key]: tones._40,
+            [`on${toSentenceCase(key)}`]: tones._98,
+            [`${key}Container`]: tones._90,
+            [`on${toSentenceCase(key)}Container`]: tones._10,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+          };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+          };
+
         default:
-          setTheme((prevTheme) => ({
-            ...prevTheme,
-            light: {
-              ...prevTheme.light,
+          theme.light = {
+            ...theme.light,
+            [key]: tones._40,
+            [`on${toSentenceCase(key)}`]: tones._98,
+            [`${key}Container`]: tones._90,
+            [`on${toSentenceCase(key)}Container`]: tones._10,
+          };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+          };
+      }
+    });
+  };
+  // Svelte does not like class declarations in nested scope so moved up to top
+  class TonalSwatches {
+    [key: string]: any; // Add index signature for string keys
+
+    constructor(hue: number, chroma: number) {
+      const swatch = TonalPalette.fromHueAndChroma(hue, chroma);
+
+      for (let i = 1; i <= 99; i++) {
+        this[`_${i}`] = hexFromArgb(swatch.tone(i));
+      }
+    }
+  }
+  // Define the updateTheme function
+  // Linter may throw issues because at the moment async functions are not allowed for onMount
+  onMount(async (palette: PaletteState) => {
+    Object.keys(palette).forEach((key) => {
+      var argb = argbFromHex(palette[key]);
+      var hct = Hct.fromInt(argb);
+      var tones = new TonalSwatches(hct.hue, hct.chroma);
+
+      // map the tones from each color group to a swatch name
+      switch (key) {
+        case "neutral":
+          theme.light = {
+            ...theme.light,
+            background: tones._99,
+            onBackground: tones._10,
+            surfaceDim: tones._87,
+            surface: tones._98,
+            surfaceBright: tones._98,
+            surfaceContainerLowest: "white",
+            surfaceContainerLow: tones._96,
+            surfaceContainer: tones._94,
+            surfaceContainerHigh: tones._92,
+            surfaceContainerHighest: tones._90,
+            onSurface: tones._10,
+            inverseSurface: tones._20,
+            inverseOnSurface: tones._95,
+          };
+          theme.dark = {
+            ...theme.dark,
+            background: tones._10,
+            onBackground: tones._85,
+            surfaceContainerLowest: tones._4,
+            surfaceDim: tones._6,
+            surface: tones._6,
+            surfaceContainerLow: tones._10,
+            surfaceContainer: tones._12,
+            surfaceContainerHigh: tones._17,
+            surfaceContainerHighest: tones._22,
+            surfaceBright: tones._24,
+            onSurface: tones._90,
+            inverseSurface: tones._98,
+            inverseOnSurface: tones._10,
+          };
+          break;
+        case "neutralvariant":
+          theme.light = {
+            ...theme.light,
+            surfaceVariant: tones._80,
+            onSurfaceVariant: tones._40,
+            outline: tones._60,
+            outlineVariant: tones._90,
+          };
+          theme.dark = {
+            ...theme.dark,
+            surfaceVariant: tones._20,
+            onSurfaceVariant: tones._60,
+            outline: tones._50,
+            outlineVariant: tones._30,
+          };
+          break;
+        case "primary":
+          theme.light = {
+              ...theme.light,
               [key]: tones._40,
               [`on${toSentenceCase(key)}`]: tones._98,
               [`${key}Container`]: tones._90,
               [`on${toSentenceCase(key)}Container`]: tones._10,
-            },
-            dark: {
-              ...prevTheme.dark,
-              [key]: tones._80,
-              [`on${toSentenceCase(key)}`]: tones._20,
-              [`${key}Container`]: tones._30,
-              [`on${toSentenceCase(key)}Container`]: tones._90,
-            },
-          }));
+              [`${key}Fixed`]: tones._90,
+              [`${key}FixedDim`]: tones._80,
+              [`on${toSentenceCase(key)}Fixed`]: tones._10,
+              [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+              ["inversePrimary"]: tones._80,
+            };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+            ["inversePrimary"]: tones._80,
+          };
+          break;
+        case "secondary":
+        case "tertiary":
+          theme.light = {
+            ...theme.light,
+            [key]: tones._40,
+            [`on${toSentenceCase(key)}`]: tones._98,
+            [`${key}Container`]: tones._90,
+            [`on${toSentenceCase(key)}Container`]: tones._10,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+          };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+            [`${key}Fixed`]: tones._90,
+            [`${key}FixedDim`]: tones._80,
+            [`on${toSentenceCase(key)}Fixed`]: tones._10,
+            [`on${toSentenceCase(key)}FixedVariant`]: tones._30,
+          };
+        default:
+          theme.light = {
+            ...theme.light,
+            [key]: tones._40,
+            [`on${toSentenceCase(key)}`]: tones._98,
+            [`${key}Container`]: tones._90,
+            [`on${toSentenceCase(key)}Container`]: tones._10,
+          };
+          theme.dark = {
+            ...theme.dark,
+            [key]: tones._80,
+            [`on${toSentenceCase(key)}`]: tones._20,
+            [`${key}Container`]: tones._30,
+            [`on${toSentenceCase(key)}Container`]: tones._90,
+          };
       }
     });
   });
   // Might throw linting errors due to async functions not being valid callbacks
   onMount(
-    async (hexCode: string, setPalette) => {
+    async (hexCode: string) => {
       var newPalette: Record<string, string> = {};
 
       // need to get the key colors to feed back to the ColorModule so it can update the palette
@@ -488,10 +577,7 @@
         });
 
         Object.keys(newPalette).forEach((key) => {
-          setPalette((prevPalette) => ({
-            ...prevPalette,
-            [key]: newPalette[key],
-          }));
+          palette[key] = newPalette[key]
         });
       } catch (error) {
         console.error(error);
@@ -499,7 +585,47 @@
     },
   );
 
-  setContext("ThemeContext", {
+  const updateThemeFromMaster = async (hexCode: string) => {
+    var newPalette: Record<string, string> = {};
+
+    // need to get the key colors to feed back to the ColorModule so it can update the palette
+    try {
+      const colors = await materialDynamicColors(hexCode);
+
+      newPalette.primary = colors.light.primary;
+      newPalette.secondary = colors.light.secondary;
+      newPalette.tertiary = colors.light.tertiary;
+      newPalette.neutral = colors.light.surfaceContainer;
+
+      const customColors: Record<string, { color: string; name: string }> = {
+        info: { color: "#175bfc", name: "info" },
+        warning: { color: "#ffbf00", name: "warning" },
+        success: { color: "#42cb83", name: "success" },
+      };
+
+      Object.keys(customColors).forEach((key) => {
+        const sourceColor = argbFromHex(hexCode);
+        const customColorObj = {
+          value: argbFromHex(customColors[key].color),
+          blend: true,
+          name: customColors[key].name,
+        };
+
+        const result = customColor(sourceColor, customColorObj);
+
+        const newHexVal = hexFromArgb(result.value);
+        newPalette[key] = newHexVal;
+      });
+
+      Object.keys(newPalette).forEach((key) => {
+        palette[key] = newPalette[key]
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  }
+
+  const themeContext = {
     theme,
     updateTheme,
     updateThemeFromMaster,
@@ -509,8 +635,15 @@
     setNavIsOpen,
     colorMode,
     setColorMode,
-  });
-  //normalization functions; things that prevent weird input behavior
+  };
+  
+  export function setThemeContext() {
+    setContext("ThemeContext", themeContext);
+  }
+  setThemeContext();
+  // Helper functions to help preserve type safety
+  export function getThemeContext() {
+    return getContext("ThemeContext") as typeof themeContext
+  }
+
 </script>
-
-
