@@ -63,33 +63,21 @@
 
 <div class={styles.page}>
 
-<!-- Snippets to pass as values for props -->
-{#snippet navButton(key, label, variant)}
-  <Button {key} {label} {variant} />
-{/snippet}
-
-{#snippet navIconButton(key, icon, variant, color)}
-  <IconButton {key} {icon} {variant} {color} />
-{/snippet}
-
-{#snippet ctaButton(key, label, variant, color)}
-  <Button {key} {label} {variant} {color} />
-{/snippet}
 
 <ThemeController/>
   <NavBar
     navButtons={[
-      navButton("1", "Home", "text"),
-      navButton("2", "About", "text"),
-      navButton("3", "Careers", "text"),
+      { key: "1", label: "Home", variant: "text" },
+      { key: "2", label: "About", variant: "text" },
+      { key: "3", label: "Careers", variant: "text" }
     ]}
-    iconButtons={[
-      navIconButton("search", "search", "text", "surfacecontainer"),
-      navIconButton("heart", "book", "text", "surfacecontainer")
+    navIconButtons={[
+      { key:"search", icon: "search", variant: "text", color: "surfacecontainer" },
+      { key: "heart", icon: "book", variant: "text", color: "surfacecontainer" }
     ]}
     ctaButtons={[
-      ctaButton("secondary", "Secondary", "outline", "surface"),
-      ctaButton("primary", "Primary", "fill", "surfacecontainer")
+      {key: "secondary", label: "Secondary", variant: "outline", color: "surface" },
+      {key: "primary", label: "Primary", variant: "fill", color: "surfacecontainer" }
     ]}
   />
   <!--<Snackbar badgeColor="error" globalColor="surface" /> -->
@@ -123,8 +111,8 @@
     /> -->
   </div>
   <Tabs tabLinks={tabLabels}>
-    {#each tabLabels as label, index}
-      <TabContent key={index}>
+    {#each tabLabels as label}
+      <TabContent>
         <p>This is the content for {label}</p>
       </TabContent>
     {/each}
@@ -154,14 +142,14 @@
   </p>
   <div style:padding="2rem">
     <h2>Row with gap, justifyContent, alignItems</h2>
-    <Row gap="lg" justifyContent="space-around" align-items="center">
+    <Row gap="lg" justifyContent="space-around" style="align-items: 'center'">
       <div style:background="#ddd" style:padding="1rem">Item 1</div>
       <div style:background="#bbb" style:padding="1rem">Item 2</div>
       <div style:background="#999" style:padding="1rem">Item 3</div>
     </Row>
 
     <h2 style:marginTop="2rem">Row with wrapChildren</h2>
-    <Row gap="lg" wrapChildren={true} style='max-width="300px";'>
+    <Row gap="lg" wrapChildren={true} style='max-width: "300px";'>
       <div style:background="#ccc" style:width="200px" style:padding="1rem">A</div>
       <div style:background="#aaa" style:width="200px" style:padding="1rem">B</div>
       <div style:background="#888" style:width="200px" style:padding="1rem">C</div>
@@ -522,17 +510,16 @@
 
     <!--ASPECT RATIO TESTING -->
     <div class="aspect-test-grid">
-      {#each aspectRatios as ration }(ratio) => (
+      {#each aspectRatios as ratio }
         <figure key={ratio} style={{ border: "1px solid #ccc" }}>
           <Image
             src="/testimage.png"
             alt={ratio}
             lk-image-aspect={ratio}
-            style={{ width: "100%", objectFit: "cover" }}
+            style='width: "100%"; objectFit: "cover";'
           />
           <figcaption class="text-center mt-2">{ratio}</figcaption>
         </figure>
-      ))
       {/each}
     </div>
     <Text fontClass="display1" tag="footer" color="primary">
