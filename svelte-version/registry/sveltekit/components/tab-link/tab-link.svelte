@@ -26,7 +26,7 @@
 
 <div data-lk-component="tab-link" {...dataAttrs} {...restProps}>
   <div data-lk-slot="child">
-    <Text fontClass={fontClass} style:fontWeight={selected ? 700 : ''}>
+    <Text fontClass={fontClass} style={`font-weight: ${selected ? 700 : ''};`}>
       {@render children?.()}
     </Text>
   </div>
