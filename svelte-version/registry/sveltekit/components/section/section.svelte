@@ -23,7 +23,6 @@
   const lkSectionAttrs = $derived(
     propsToDataAttrs({ container, children, padding, px, py, pt, pb, pl, pr }, "section"),
   );
-
 </script>
 
 <section {...lkSectionAttrs} {...restProps}>
@@ -33,4 +32,5 @@
     {:else}
       {@render children?.()}
     {/if}
+  </div>
 </section>
