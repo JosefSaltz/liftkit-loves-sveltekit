@@ -18,6 +18,7 @@
     bgColor?: LkColor; // supports all LkColors instead of only those with on-token support
     children?: Snippet;
     className?: string; // explicitly extracting because internal logic controls its rendering order
+    content: string;
   }
 
   let {
