@@ -38,6 +38,8 @@
   data-lk-component="switch"
   onclick={() => handleClick(!switchIsOn)}
   data-lk-switch-state={switchIsOn ? "on" : "off"}
+  style:background-color={`var(--lk-${offColor})`}
+  style={`--background-onColor: ${onColor}; --lk-background-switchThumbOffColor: ${switchThumbOffColor}; --lk-background-switchThumbOnColor: ${switchThumbOnColor}`}
 >
   <div data-lk-component="switch-thumb" data-lk-switch-state={switchIsOn ? "on" : "off"}></div>
 </div>
@@ -50,11 +52,11 @@
     justify-content: start;
     width: var(--lk-size-xl);
     height: calc(var(--lk-size-md) + calc(var(--lk-size-2xs) * 2));
-    background-color: var(--lk-${offColor});
+    /* background-color: var(--lk-${offColor}); Moved to style directive declaration */ 
     border-radius: 100em;
 
     &[data-lk-switch-state="on"] {
-      background-color: var(--lk-${onColor});
+      background-color: var(--lk-background-onColor);
     }
   }
 
@@ -66,13 +68,13 @@
     width: var(--lk-size-md);
     height: var(--lk-size-md);
     border-radius: 50%;
-    background-color: var(--lk-${switchThumbOffColor});
+    background-color: var(--lk-background-switchThumbOffColor);
     transform: translateY(-50%);
     transition: left 0.1s ease-out;
   }
 
   [data-lk-component="switch-thumb"][data-lk-switch-state="on"] {
     left: calc(100% - calc(var(--lk-size-md) + var(--lk-size-2xs)));
-    background-color: var(--lk-${switchThumbOnColor});
+    background-color: var(--lk-background-switchThumbOnColor);
   }
 </style>
