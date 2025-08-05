@@ -144,7 +144,7 @@ setContext<LkSelectContext>("SelectContext", {} as LkSelectContext);
     ref={hiddenSelectRef}
     name={name}
     value={selectedValue}
-    onChange={() => {}} // Controlled by our custom logic
+    onChange={() => {}}  
     style={{
       position: "absolute",
       left: "-9999px",
