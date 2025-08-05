@@ -28,7 +28,7 @@
 
   let { zIndex = 0, type, materialProps }: LkMaterialLayerProps = $props();
   /**If materialProps are provided, loop through the keys and pass each one as a data attribute to the component. */
-  let lkMatProps?: LkMatProps = $derived(materialProps ? propsToDataAttrs(materialProps, `${type}`) : undefined);
+  let lkMatProps: LkMatProps | undefined = $derived(materialProps ? propsToDataAttrs(materialProps, `${type}`) : undefined);
   // Svelte work around for Next.js CSS-In-JS feature
   const blurToLkSize = (blur: LkMatProps_Glass["thickness"]) => { 
     if(blur === "thick") return '--lk-size-lg';
