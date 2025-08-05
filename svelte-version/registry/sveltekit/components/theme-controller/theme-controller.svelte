@@ -4,7 +4,7 @@
   import Row from "@/registry/sveltekit/components/row";
   import Switch from "@/registry/sveltekit/components/switch";
   import IconButton from "@/registry/sveltekit/components/icon-button";
-  import { getThemeContext }
+  import { getThemeContext } from "@/registry/sveltekit/components/theme";
   
   type LkColorGroup =
     | "master"
@@ -48,10 +48,7 @@
         updateThemeFromMaster(newValue, setPalette);
       } 
       else {
-        setPalette((palette) => ({
-          ...palette,
-          [key]: newValue,
-        }));
+        setPalette({ [key]: newValue })
       }
     };
 
