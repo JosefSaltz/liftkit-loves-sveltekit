@@ -7,14 +7,16 @@
   import "@/registry/sveltekit/components/navbar/navbar.css";
   import MaterialLayer from "@/registry/sveltekit/components/material-layer";
   import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
+	import type { HTMLAttributes } from "svelte/elements";
+	import type { Snippet } from "svelte";
 
-  interface LkNavBarProps extends React.HTMLAttributes<HTMLDivElement> {
+  interface LkNavBarProps extends HTMLAttributes<HTMLDivElement> {
     material?: LkMaterial;
     // TODO: These types need to be changed to something more appropriate
-    navButtons?: React.ReactNode;
-    navDropdowns?: React.ReactNode;
-    iconButtons?: React.ReactNode;
-    ctaButtons?: React.ReactNode;
+    navButtons?: Snippet[];
+    navDropdowns?: Snippet[];
+    iconButtons?: Snippet[];
+    ctaButtons?: Snippet[];
   }
 
   /**
@@ -50,53 +52,116 @@
   }: LkNavBarProps = $props()
   const dataAttrs = $derived(propsToDataAttrs({ material, restProps }, "navbar"));
 
-  let menuOpen = useState(false);
+  let menuOpen = $state(false);
   const setMenuOpen = (state: boolean) => menuOpen = state;
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-
-  // If no navButtons or navDropdowns are provided, render placeholder blocks
-  function getPlaceholderBlocks(count: number) {
-    const blocks = [];
-    for (let i = 0; i < count; i++) {
-      blocks.push(() => <PlaceholderBlock key={i} />);
-    }
-    return blocks;
-  }
+  // Using Svelte Templative Syntax for implementation instead
+  // Next JS Version
+  // // If no navButtons or navDropdowns are provided, render placeholder blocks
+  // function getPlaceholderBlocks(count: number) {
+  //   const blocks = [];
+  //   for (let i = 0; i < count; i++) {
+  //     blocks.push(() => <PlaceholderBlock key={i} />);
+  //   }
+  //   return blocks;
+  // }
 
 </script>
+<!-- Snippet for generating placeholder blocks -->
+{#snippet PlaceholderBlocks(length)}
+  {#each Array.from({ length }) as _}
+    <PlaceholderBlock />
+  {/each}
+{/snippet}
 
 <div data-lk-component="navbar" {...dataAttrs}>
   <!-- Desktop Navbar -->
-  <div className="navbar-desktop">
+  <div class="navbar-desktop">
     <Row alignItems="center" gap="sm">
-      <Link href="/">
+      <a href="/">
         <Image alt="" src="/logotype.svg" height="md"/>
-      </Link>
+      </a>
     </Row>
     <Row>
-      <Row data-lk-slot="nav-buttons">{navButtons || getPlaceholderBlocks(2)}</Row>
-      <Row data-lk-slot="nav-dropdowns">{navDropdowns || getPlaceholderBlocks(2) }</Row>
+      <Row data-lk-slot="nav-buttons">
+        {#if navButtons}
+          {#each navButtons as navButton}
+            {@render navButton()}
+          {/each}
+        {:else}
+          {@render PlaceholderBlocks(2)}
+        {/if}
+      </Row>
+      <Row data-lk-slot="nav-dropdowns">
+        {#if navDropdowns}
+          {#each navDropdowns as navDropdown}
+            {@render navDropdown()}
+          {/each}
+        {:else}
+          {@render PlaceholderBlocks(2)}
+        {/if}
+      </Row>
     </Row>
     <Row data-lk-navbar-el="nav-menu-end">
-      <div data-lk-slot="nav-icon-buttons">{iconButtons || getPlaceholderBlocks(3)}</div>
-      <div data-lk-slot="nav-cta-buttons">{ctaButtons || getPlaceholderBlocks(2)}</div>
+      <div data-lk-slot="nav-icon-buttons">
+        {#if iconButtons}
+          {#each iconButtons as iconButton}
+            {@render iconButton()}
+          {/each}
+        {:else}
+          {@render PlaceholderBlocks(3)}
+        {/if}</div>
+      <div data-lk-slot="nav-cta-buttons">
+        {#if ctaButtons}
+          {#each ctaButtons as ctaButton}
+            {@render ctaButton()}
+          {/each}
+        {:else}
+          {@render PlaceholderBlocks(2)}
+        {/if}</div>
     </Row>
   </div>
 
   <!-- Mobile Navbar -->
   <div data-lk-navbar-el="nav-menu">
-    <Column alignItems="start" className={`navbar-mobile ${menuOpen ? "active" : ""}`}>
-      <IconButton icon="menu" onClick={() => toggleMenu()} />
-      <Link href="/">
+    <Column alignItems="start" class={`navbar-mobile ${menuOpen ? "active" : ""}`}>
+      <IconButton icon="menu" onclick={() => toggleMenu()} />
+      <a href="/">
         <Image alt="" src="/vercel.svg" width="md" height="md" />
-      </Link>
-      <Column>{navButtons}</Column>
-      <Column>{navDropdowns}</Column>
-      <div>{iconButtons}</div>
-      <Column className="flex-h gap-sm">{ctaButtons}</Column>
+      </a>
+      <Column>
+        {#if navButtons}
+          {#each navButtons as navButton}
+            {@render navButton()}
+          {/each}
+        {/if}
+      </Column>
+      <Column>
+        {#if navDropdowns}
+          {#each navDropdowns as navDropdown}
+            {@render navDropdown()}
+          {/each}
+        {/if}
+      </Column>
+      <div>
+        {#if iconButtons}
+          {#each iconButtons as iconButton}
+            {@render iconButton()}
+          {/each}
+        {/if}
+      </div>
+      <Column class="flex-h gap-sm">
+        {#if ctaButtons}
+          {#each ctaButtons as ctaButton}
+            {@render ctaButton()}
+          {/each}
+        {/if}
+      </Column>
     </Column>
   </div>
-  {material === "glass" && <MaterialLayer type="glass"></MaterialLayer>}
+  {#if material === "glass"} 
+    <MaterialLayer type="glass"></MaterialLayer>
+  {/if}
 </div>
 
