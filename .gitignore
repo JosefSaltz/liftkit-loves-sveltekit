@@ -66,3 +66,5 @@ type-usage-report.txt
 # vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+.vscode
