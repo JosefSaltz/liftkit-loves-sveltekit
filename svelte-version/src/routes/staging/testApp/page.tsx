@@ -1,21 +1,21 @@
 "use client";
-import Column from "@/registry/nextjs/components/column";
-import Heading from "@/registry/nextjs/components/heading";
-import Icon from "@/registry/nextjs/components/icon";
-import IconButton from "@/registry/nextjs/components/icon-button";
-import Row from "@/registry/nextjs/components/row";
-import Card from "@/registry/nextjs/components/card";
-import Tabs from "@/registry/nextjs/components/tabs";
-import TextInput from "@/registry/nextjs/components/text-input";
-import { Dropdown, DropdownTrigger, DropdownMenu } from "@/registry/nextjs/components/dropdown";
-import Button from "@/registry/nextjs/components/button";
-import MenuItem from "@/registry/nextjs/components/menu-item";
-import Text from "@/registry/nextjs/components/text";
+import Column from "@/registry/nextjs-reference/components/column";
+import Heading from "@/registry/nextjs-reference/components/heading";
+import Icon from "@/registry/nextjs-reference/components/icon";
+import IconButton from "@/registry/nextjs-reference/components/icon-button";
+import Row from "@/registry/nextjs-reference/components/row";
+import Card from "@/registry/nextjs-reference/components/card";
+import Tabs from "@/registry/nextjs-reference/components/tabs";
+import TextInput from "@/registry/nextjs-reference/components/text-input";
+import { Dropdown, DropdownTrigger, DropdownMenu } from "@/registry/nextjs-reference/components/dropdown";
+import Button from "@/registry/nextjs-reference/components/button";
+import MenuItem from "@/registry/nextjs-reference/components/menu-item";
+import Text from "@/registry/nextjs-reference/components/text";
 import { useState, useEffect, useContext } from "react";
-import { ThemeContext } from "@/registry/nextjs/components/theme";
-import ThemeController from "@/registry/nextjs/components/theme-controller";
-import Section from "@/registry/nextjs/components/section";
-import Container from "@/registry/nextjs/components/container";
+import { ThemeContext } from "@/registry/nextjs-reference/components/theme";
+import ThemeController from "@/registry/nextjs-reference/components/theme-controller";
+import Section from "@/registry/nextjs-reference/components/section";
+import Container from "@/registry/nextjs-reference/components/container";
 
 export default function TestApp() {
   // const { palette, updateTheme } = useContext(ThemeContext);

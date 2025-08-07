@@ -1,10 +1,10 @@
-import Container from "@/registry/nextjs/components/container";
-import Heading from "@/registry/nextjs/components/heading";
-import IconButton from "@/registry/nextjs/components/icon-button";
-import Row from "@/registry/nextjs/components/row";
-import Column from "@/registry/nextjs/components/column";
-import Section from "@/registry/nextjs/components/section";
-import Text from "@/registry/nextjs/components/text";
+import Container from "@/registry/nextjs-reference/components/container";
+import Heading from "@/registry/nextjs-reference/components/heading";
+import IconButton from "@/registry/nextjs-reference/components/icon-button";
+import Row from "@/registry/nextjs-reference/components/row";
+import Column from "@/registry/nextjs-reference/components/column";
+import Section from "@/registry/nextjs-reference/components/section";
+import Text from "@/registry/nextjs-reference/components/text";
 
 export default function IconButtonStaging() {
   const fontClasses: Exclude<LkFontClass, `${string}-bold` | `${string}-mono`>[] = [

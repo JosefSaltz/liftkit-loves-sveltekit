@@ -1,8 +1,8 @@
 import React from "react";
-import Section from "@/registry/nextjs/components/section";
-import Row from "@/registry/nextjs/components/row";
-import Container from "@/registry/nextjs/components/container";
-import MaterialLayer from "@/registry/nextjs/components/material-layer";
+import Section from "@/registry/nextjs-reference/components/section";
+import Row from "@/registry/nextjs-reference/components/row";
+import Container from "@/registry/nextjs-reference/components/container";
+import MaterialLayer from "@/registry/nextjs-reference/components/material-layer";
 
 export default function MaterialStaging() {
   /** Defining a temporary style to use for testing material */

@@ -1,11 +1,11 @@
 "use client";
 
-import Heading from "@/registry/nextjs/components/heading";
-import Row from "@/registry/nextjs/components/row";
-import Section from "@/registry/nextjs/components/section";
-import Container from "@/registry/nextjs/components/container";
-import MenuItem from "@/registry/nextjs/components/menu-item";
-import { LkIconProps } from "@/registry/nextjs/components/icon";
+import Heading from "@/registry/nextjs-reference/components/heading";
+import Row from "@/registry/nextjs-reference/components/row";
+import Section from "@/registry/nextjs-reference/components/section";
+import Container from "@/registry/nextjs-reference/components/container";
+import MenuItem from "@/registry/nextjs-reference/components/menu-item";
+import { LkIconProps } from "@/registry/nextjs-reference/components/icon";
 
 export default function MenuItemStaging() {
   const fontClasses: LkFontClass[] = [

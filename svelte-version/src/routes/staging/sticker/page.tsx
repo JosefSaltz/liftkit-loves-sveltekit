@@ -1,7 +1,7 @@
-import Grid from "@/registry/nextjs/components/grid";
-import Container from "@/registry/nextjs/components/container";
-import Section from "@/registry/nextjs/components/section";
-import Sticker from "@/registry/nextjs/components/sticker";
+import Grid from "@/registry/nextjs-reference/components/grid";
+import Container from "@/registry/nextjs-reference/components/container";
+import Section from "@/registry/nextjs-reference/components/section";
+import Sticker from "@/registry/nextjs-reference/components/sticker";
 import { LkColors } from "@/registry/universal/lib/utils/debugUtils";
 
 export default function StickerStaging() {

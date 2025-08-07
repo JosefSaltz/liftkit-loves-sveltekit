@@ -1,10 +1,10 @@
 "use client";
-import Column from "@/registry/nextjs/components/column";
-import Heading from "@/registry/nextjs/components/heading";
-import Section from "@/registry/nextjs/components/section";
-import Image from "@/registry/nextjs/components/image";
-import Container from "@/registry/nextjs/components/container";
-import Grid from "@/registry/nextjs/components/grid";
+import Column from "@/registry/nextjs-reference/components/column";
+import Heading from "@/registry/nextjs-reference/components/heading";
+import Section from "@/registry/nextjs-reference/components/section";
+import Image from "@/registry/nextjs-reference/components/image";
+import Container from "@/registry/nextjs-reference/components/container";
+import Grid from "@/registry/nextjs-reference/components/grid";
 
 type LkAspectRatio =
   | "auto"

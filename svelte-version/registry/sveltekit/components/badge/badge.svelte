@@ -1,59 +1,65 @@
 <script lang="ts">
-  import Icon from "@/registry/sveltekit/components/icon";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
-  import type { IconName } from "lucide-react/dynamic";
-  import "@/registry/sveltekit/components/badge/badge.css";
-	import type { HTMLAttributes } from "svelte/elements";
+	import '@/registry/sveltekit/components/badge/badge.css';
+	import Icon from '@/registry/sveltekit/components/icon';
+	import { getOnToken } from '@/registry/universal/lib/colorUtils';
+	import type { IconName } from 'lucide-react/dynamic';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-  export interface LkBadgeProps extends HTMLAttributes<HTMLDivElement> {
-    icon?: IconName;
-    color?: LkColorWithOnToken;
-    scale?: "md" | "lg";
-    iconStrokeWidth?: number;
-    scrim?: boolean;
-  }
-  /**
-   * A badge component that displays an icon with customizable appearance.
-   *
-   * @param icon - The name of the icon to display. Defaults to "roller-coaster".
-   * @param color - Any LkColorWithOnToken value to set the badge color. Defaults to "surface".
-   * @param scale - The size scale of the badge. Defaults to "md".
-   * @param iconStrokeWidth - The stroke width of the icon. Defaults to 1.
-   * @param restProps - Additional props to be spread onto the root div element.
-   * @returns A JSX element representing the badge component.
-   */
-  let {
-    icon = "roller-coaster",
-    color = "surface",
-    scale = "md",
-    iconStrokeWidth = 1.5,
-    scrim = false,
-    ...restProps
-  }: LkBadgeProps = $props()
+	export interface LkBadgeProps extends HTMLAttributes<HTMLDivElement> {
+		icon?: IconName;
+		color?: LkColorWithOnToken;
+		scale?: 'md' | 'lg';
+		iconStrokeWidth?: number;
+		scrim?: boolean;
+	}
+	/**
+	 * A badge component that displays an icon with customizable appearance.
+	 *
+	 * @param icon - The name of the icon to display. Defaults to "roller-coaster".
+	 * @param color - Any LkColorWithOnToken value to set the badge color. Defaults to "surface".
+	 * @param scale - The size scale of the badge. Defaults to "md".
+	 * @param iconStrokeWidth - The stroke width of the icon. Defaults to 1.
+	 * @param restProps - Additional props to be spread onto the root div element.
+	 * @returns A JSX element representing the badge component.
+	 */
+	let {
+		icon = 'roller-coaster',
+		color = 'surface',
+		scale = 'md',
+		iconStrokeWidth = 1.5,
+		scrim = false,
+		...restProps
+	}: LkBadgeProps = $props();
 
-  const iconColor = getOnToken(color) as LkColor;
+	const iconColor = getOnToken(color) as LkColor;
 
-  /** Dynamically set default iconStrokeWidth based on provided scale, if provided */
-  let defaultIconStrokeWidth;
+	/** Dynamically set default iconStrokeWidth based on provided scale, if provided */
+	let defaultIconStrokeWidth;
 
-  switch (scale) {
-    case "lg":
-      defaultIconStrokeWidth = 1;
-      break;
-    case "md":
-    default:
-      defaultIconStrokeWidth = 1.5;
-      break;
-  }
+	switch (scale) {
+		case 'lg':
+			defaultIconStrokeWidth = 1;
+			break;
+		case 'md':
+		default:
+			defaultIconStrokeWidth = 1.5;
+			break;
+	}
 </script>
 
-<div data-lk-component="badge" data-lk-badge-scale={scale} data-lk-badge-color={`lk-${color}`} {...restProps}>
-  <div data-lk-component="slot" data-lk-slot="icon">
-    <div data-lk-icon-element="wrapper">
-      <Icon name={icon} color={iconColor} strokeWidth={iconStrokeWidth || defaultIconStrokeWidth}></Icon>
-    </div>
-  </div>
-  {#if scrim} 
-    <div data-lk-component="badge-scrim" class={`bg-${iconColor}`}></div>
-  {/if}
+<div
+	data-lk-component="badge"
+	data-lk-badge-scale={scale}
+	data-lk-badge-color={`lk-${color}`}
+	{...restProps}
+>
+	<div data-lk-component="slot" data-lk-slot="icon">
+		<div data-lk-icon-element="wrapper">
+			<Icon name={icon} color={iconColor} strokeWidth={iconStrokeWidth || defaultIconStrokeWidth}
+			></Icon>
+		</div>
+	</div>
+	{#if scrim}
+		<div data-lk-component="badge-scrim" class={`bg-${iconColor}`}></div>
+	{/if}
 </div>

@@ -1,10 +1,10 @@
 "use client";
-import Column from "@/registry/nextjs/components/column";
-import Heading from "@/registry/nextjs/components/heading";
-import Section from "@/registry/nextjs/components/section";
-import Container from "@/registry/nextjs/components/container";
-import Button from "@/registry/nextjs/components/button";
-import { Select, SelectTrigger, SelectMenu, SelectOption } from "@/registry/nextjs/components/select";
+import Column from "@/registry/nextjs-reference/components/column";
+import Heading from "@/registry/nextjs-reference/components/heading";
+import Section from "@/registry/nextjs-reference/components/section";
+import Container from "@/registry/nextjs-reference/components/container";
+import Button from "@/registry/nextjs-reference/components/button";
+import { Select, SelectTrigger, SelectMenu, SelectOption } from "@/registry/nextjs-reference/components/select";
 import React from "react";
 
 export default function SelectStaging() {

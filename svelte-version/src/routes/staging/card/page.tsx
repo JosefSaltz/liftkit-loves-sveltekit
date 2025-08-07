@@ -1,12 +1,12 @@
 import React from "react";
 
-import Section from "@/registry/nextjs/components/section";
+import Section from "@/registry/nextjs-reference/components/section";
 
-import Row from "@/registry/nextjs/components/row";
-import Column from "@/registry/nextjs/components/column";
-import Container from "@/registry/nextjs/components/container";
+import Row from "@/registry/nextjs-reference/components/row";
+import Column from "@/registry/nextjs-reference/components/column";
+import Container from "@/registry/nextjs-reference/components/container";
 
-import Card from "@/registry/nextjs/components/card";
+import Card from "@/registry/nextjs-reference/components/card";
 export default function CardStaging() {
   const scaleFactors: LkFontClass[] = [
     "display1",

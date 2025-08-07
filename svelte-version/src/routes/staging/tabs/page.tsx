@@ -1,12 +1,12 @@
 "use client";
-import Grid from "@/registry/nextjs/components/grid";
-import Container from "@/registry/nextjs/components/container";
-import Section from "@/registry/nextjs/components/section";
-import Sticker from "@/registry/nextjs/components/sticker";
+import Grid from "@/registry/nextjs-reference/components/grid";
+import Container from "@/registry/nextjs-reference/components/container";
+import Section from "@/registry/nextjs-reference/components/section";
+import Sticker from "@/registry/nextjs-reference/components/sticker";
 import { LkColors } from "@/registry/universal/lib/utils/debugUtils";
-import Tabs from "@/registry/nextjs/components/tabs";
-import Column from "@/registry/nextjs/components/column";
-import Row from "@/registry/nextjs/components/row";
+import Tabs from "@/registry/nextjs-reference/components/tabs";
+import Column from "@/registry/nextjs-reference/components/column";
+import Row from "@/registry/nextjs-reference/components/row";
 
 export default function TabsStaging() {
   return (
