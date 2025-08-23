@@ -1,52 +1,21 @@
 {
 	"extends": "./.svelte-kit/tsconfig.json",
-	
-	"lib": [
-		"dom",
-		"dom.iterable",
-		"esnext"
-  ],
 	"include": [
-			"next-env.d.ts",
-			"**/*.ts",
-			"**/*.tsx",
-			".next/types/**/*.ts",
-			"registry/universal/lib/types/*.d.ts",
-			"src/**/*.svelte"
-		],
-	"exclude": [
-		"node_modules"
+		"**/*.ts",
+		"**/*.tsx",
+		"registry/universal/lib/types/*.d.ts",
+		"src/**/*.svelte"
 	],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,
 		"esModuleInterop": true,
 		"incremental": true,
-		"isolatedModules": true,
-		"jsx": "preserve",
-		"module": "esnext",
-		"moduleResolution": "bundler",
-		"noEmit": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
-		"target": "ES2017",
-		"verbatimModuleSyntax": true,
-		"plugins": [
-      {
-        "name": "next"
-      }
-    ],
-    "paths": {
-      "@/*": [
-        "./*"
-      ],
-			"$lib/*": ["./src/lib/*"],
-      "$routes": ["./src/routes"],
-      "@/registry": ["./registry"]
-    }
 	// Path aliases are handled by https://svelte.dev/docs/kit/configuration#alias
 	// except $lib which is handled by https://svelte.dev/docs/kit/configuration#files
 	//
