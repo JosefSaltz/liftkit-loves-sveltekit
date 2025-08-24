@@ -4,7 +4,7 @@
   import Row from "@/registry/sveltekit/components/row";
   import Switch from "@/registry/sveltekit/components/switch";
   import IconButton from "@/registry/sveltekit/components/icon-button";
-  import { getContext } from "svelte";  
+  import { getThemeContext } from "@/registry/sveltekit/components/theme"
   type LkColorGroup =
     | "master"
     | "primary"
@@ -18,63 +18,64 @@
     | "info";
 
 
-  const { palette, setPalette, theme, updateTheme, updateThemeFromMaster, colorMode, setColorMode } =
-    getContext("ThemeContext");
+  const { getPalette, setPalette, theme, updateTheme, updateThemeFromMaster, getColorMode, setColorMode } = getThemeContext();
 
-    const brandPalette: LkColorGroup[] = ["primary", "secondary", "tertiary"];
+  const brandPalette: LkColorGroup[] = ["primary", "secondary", "tertiary"];
 
-    const semanticPalette: LkColorGroup[] = ["error", "warning", "success", "info"];
+  const semanticPalette: LkColorGroup[] = ["error", "warning", "success", "info"];
 
-    const layoutPalette: LkColorGroup[] = ["neutral", "neutralvariant"];
+  const layoutPalette: LkColorGroup[] = ["neutral", "neutralvariant"];
 
-    let paletteArray = $state(
-      Object.keys(palette).map((key) => {
-        return { key, value: palette[key] };
-      })
-    );
-    const setPaletteArray = (state: { key: string, value: string}[]) => { paletteArray = state };
+  let paletteArray = $state(
+    Object.keys(getPalette()).map((key) => {
+      const palette = getPalette();
+      return { key, value: palette[key] };
+    })
+  );
+  const setPaletteArray = (state: { key: string, value: string}[]) => { paletteArray = state };
 
-    $effect(() => {
-      updateTheme(palette);
-      const newPaletteArray = Object.keys(palette).map((key) => {
-        return { key, value: palette[key] };
-      });
-      setPaletteArray(newPaletteArray);
+  $effect(() => {
+    const palette = getPalette();
+    updateTheme(palette);
+    const newPaletteArray = Object.keys(palette).map((key) => {
+      return { key, value: palette[key] };
     });
+    setPaletteArray(newPaletteArray);
+  });
 
-    const handleColorChange = (key: LkColorGroup, newValue: string) => {
-      if (key === "master") {
-        updateThemeFromMaster(newValue, setPalette);
-      } 
-      else {
-        setPalette({ [key]: newValue })
-      }
-    };
-
-    function handleColorModeSwitch() {
-      if (colorMode === "dark") {
-        setColorMode("light");
-      } 
-      else {
-        setColorMode("dark");
-      }
+  const handleColorChange = (key: LkColorGroup, newValue: string) => {
+    if (key === "master") {
+      updateThemeFromMaster(newValue, setPalette);
+    } 
+    else {
+      setPalette({ [key]: newValue })
     }
+  };
 
-    const handleCopyPalette = async () => {
-      try {
-        const codeContent = `const [colorMode, setColorMode] = useState<"light" | "dark">("${colorMode}");
-    
-    const [palette, setPalette] = useState<PaletteState>(${JSON.stringify(palette, null, 2)}`;
-        await navigator.clipboard.writeText(codeContent);
-        alert("Code copied");
-      } 
-      catch (err) {
-        console.error("Failed to copy palette:", err);
-      }
-    };
+  function handleColorModeSwitch() {
+    if (getColorMode() === "dark") {
+      setColorMode("light");
+    } 
+    else {
+      setColorMode("dark");
+    }
+  }
 
-    let isOpen = $state(false);
-    const setIsOpen = (state: boolean) => { isOpen = state };
+  const handleCopyPalette = async () => {
+    try {
+      const codeContent = `const [colorMode, setColorMode] = useState<"light" | "dark">("${colorMode}");
+  
+  const [palette, setPalette] = useState<PaletteState>(${JSON.stringify(palette, null, 2)}`;
+      await navigator.clipboard.writeText(codeContent);
+      alert("Code copied");
+    } 
+    catch (err) {
+      console.error("Failed to copy palette:", err);
+    }
+  };
+
+  let isOpen = $state(false);
+  const setIsOpen = (state: boolean) => { isOpen = state };
 </script>
 
 {#if !isOpen}
@@ -155,7 +156,7 @@
               <input
                 type="color"
                 name="master"
-                value={palette["master"]}
+                value={getPalette()["master"]}
                 onchange={(event) =>  handleColorChange("master", event.target?.value)}
               />
               <Column>
@@ -178,7 +179,7 @@
                 <input
                   type="color"
                   name={colorGroup}
-                  value={palette[colorGroup]}
+                  value={getPalette()[colorGroup]}
                   onchange={(event) => handleColorChange(colorGroup, event.target.value)}
                 />
                 <Column>
