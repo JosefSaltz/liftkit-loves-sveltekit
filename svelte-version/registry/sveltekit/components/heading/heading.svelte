@@ -25,7 +25,7 @@
 	 * @returns A semantic heading element with the specified tag and styling
 	 */
 	let {
-		tag = 'h2' : Snippet,
+		tag: Tag = 'h2',
 		fontClass = 'display2-bold',
 		fontColor,
 		// content = "Heading",
@@ -35,13 +35,13 @@
 	}: LkHeadingProps = $props();
 
 	const headingAttrs = $derived(propsToDataAttrs(restProps, 'heading'));
-	const Tag = tag;
 </script>
 
-<h2
+<svelte:element
+	this={Tag}
 	data-lk-component="heading"
-	className={`${fontClass} color-${fontColor} ${className || ''}`}
+	class={`${fontClass} color-${fontColor} ${className || ''}`}
 	{...headingAttrs}
 >
 	{@render children?.()}
-</Tag>
+</svelte:element>

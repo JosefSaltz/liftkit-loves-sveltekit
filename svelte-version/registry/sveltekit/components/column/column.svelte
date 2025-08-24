@@ -1,6 +1,6 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/column/column.css";
+  import { propsToDataAttrs } from "$lib/utilities";
+  import "$components/column/column.css";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
 
@@ -12,8 +12,8 @@
     defaultChildBehavior?: "auto-grow" | "auto-shrink" | "ignoreFlexRules" | "ignoreIntrinsicSize";
     children?: Snippet;
   }
-
-  let { children, alignItems="stretch", justifyContent="start", gap, wrapChildren, defaultChildBehavior, ...restProps }: LkColumnProps = $props();
+ 
+  let { children, alignItems = "stretch", justifyContent = "start", gap, wrapChildren, defaultChildBehavior, ...restProps }: LkColumnProps = $props();
 
   const lkColumnAttrs = $derived(
     propsToDataAttrs({ alignItems, defaultChildBehavior, justifyContent, gap, wrapChildren }, "column"),
