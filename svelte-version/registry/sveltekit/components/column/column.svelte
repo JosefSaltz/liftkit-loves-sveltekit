@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "$lib/utilities";
+  import { propsToDataAttrs } from "$registry/lib/utilities";
   import "$components/column/column.css";
 	import type { HTMLAttributes } from "svelte/elements";
 	import type { Snippet } from "svelte";
