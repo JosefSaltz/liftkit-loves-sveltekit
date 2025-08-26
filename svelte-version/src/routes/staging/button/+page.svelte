@@ -5,22 +5,22 @@ import Heading from "$components/heading";
 import Grid from "$components/grid";
 import Row from "$components/row";
 import ThemeController from "$components/theme-controller";
-import { IconName } from "lucide-react/dynamic";
-import type { Snippet } from "svelte";
+import type { IconName } from "lucide-react/dynamic";
+	import { onMount, type Snippet } from "svelte";
 
   type ButtonSnippetProps = {
     colors: LkColorWithOnToken[];
     colorIndex: number;
-    variants: string[];
+    variants: typeof buttonVariants;
     variantIndex: number;
-    sizes: typeof sizes;
+    sizes: typeof buttonSizes;
     sizeIndex: number;
     iconIndex: number;
     currentConfig: (typeof iconConfigs)[number];
 	};
-
-  const sizes = ['sm', 'md', 'lg'] as const;
-  
+  let buttonsToRender = $state<undefined | Snippet[]>(generateButtons(buttonColors, buttonVariants, buttonSizes, iconConfigs))
+  const buttonSizes = ['sm', 'md', 'lg'] as const;
+  const buttonVariants = ["fill", "outline", "text"] as const;
 	const iconConfigs = [
 		{ startIcon: undefined, endIcon: undefined, label: 'No Icons' },
 		{ startIcon: 'circle', endIcon: undefined, label: 'Start Icon' },
@@ -67,6 +67,49 @@ import type { Snippet } from "svelte";
     "inversesurface",
     "background",
   ] as const;
+
+  const generateButtons = (
+        colors: LkColorWithOnToken[],
+        variants: typeof buttonVariants,
+        sizes: typeof buttonSizes,
+        icons: typeof iconConfigs,
+        colorIndex = 0,
+        variantIndex = 0,
+        sizeIndex = 0,
+        iconIndex = 0
+      ): Snippet[] => {
+        // Return an empty array if the index exceeds the array range
+        if (colorIndex >= colors.length) return [];
+        // If variant index exceeds possible variants
+        if (variantIndex >= variants.length)
+          return generateButtons(colors, variants, sizes, icons, colorIndex + 1, 0, 0, 0);
+        // If size index exceeds possible sizes
+        if (sizeIndex >= sizes.length)
+          return generateButtons(colors, variants, sizes, icons, colorIndex, variantIndex + 1, 0, 0);
+        // If iconIndex exceeds 
+        if (iconIndex >= icons.length)
+          return generateButtons(colors, variants, sizes, icons, colorIndex, variantIndex, sizeIndex + 1, 0);
+
+        const currentConfig = icons[iconIndex];
+        
+        return [
+          button,
+          ...generateButtons(
+            colors,
+            variants,
+            sizes,
+            iconConfigs,
+            colorIndex,
+            variantIndex,
+            sizeIndex,
+            iconIndex + 1
+          ),
+        ];
+      };
+
+  onMount(() => {
+    buttonsToRender = generateButtons(buttonColors, buttonVariants, buttonSizes, iconConfigs);
+  })
 </script>
 
 {#snippet button({
@@ -83,7 +126,7 @@ import type { Snippet } from "svelte";
 		label={`Button`}
 		variant={variants[variantIndex] as 'fill' | 'outline' | 'text'}
 		color={colors[colorIndex] as LkColorWithOnToken}
-		size={sizes[sizeIndex] as 'sm' | 'md' | 'lg'}
+		size={sizes[sizeIndex] as typeof buttonSizes[number]}
 		startIcon={currentConfig.startIcon as IconName | undefined}
 		endIcon={currentConfig.endIcon as IconName | undefined}
 		opticIconShift={false}
@@ -102,47 +145,10 @@ import type { Snippet } from "svelte";
 
     {(() => {
 
-      const generateButtons = (
-        colors: LkColorWithOnToken[],
-        variants: string[],
-        sizes: string[],
-        iconConfigs: { startIcon?: string; endIcon?: string; label: string }[],
-        colorIndex = 0,
-        variantIndex = 0,
-        sizeIndex = 0,
-        iconIndex = 0
-      ) => {
-        // Return an empty array if the index exceeds the array range
-        if (colorIndex >= colors.length) return [];
-        // If variant index exceeds possible variants
-        if (variantIndex >= variants.length)
-          return generateButtons(colors, variants, sizes, iconConfigs, colorIndex + 1, 0, 0, 0);
-        // If size index exceeds possible sizes
-        if (sizeIndex >= sizes.length)
-          return generateButtons(colors, variants, sizes, iconConfigs, colorIndex, variantIndex + 1, 0, 0);
-        // If iconIndex exceeds 
-        if (iconIndex >= iconConfigs.length)
-          return generateButtons(colors, variants, sizes, iconConfigs, colorIndex, variantIndex, sizeIndex + 1, 0);
+      
 
-        const currentConfig = iconConfigs[iconIndex];
-        
-        return [
-          button,
-          ...generateButtons(
-            colors,
-            variants,
-            sizes,
-            iconConfigs,
-            colorIndex,
-            variantIndex,
-            sizeIndex,
-            iconIndex + 1
-          ),
-        ];
-      };
-
-      return generateButtons(buttonColors, buttonVariants, sizes, iconConfigs);
-    })()}
+      return ;
+    })}
     
   </Grid>
   <Row alignItems="start" style='gap: "var(--lk-size-md)";' class="w-full" wrapChildren={true}></Row>
