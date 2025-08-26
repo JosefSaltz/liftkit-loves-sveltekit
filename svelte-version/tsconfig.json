@@ -5,7 +5,7 @@
 		"**/*.tsx",
 		"registry/universal/lib/types/*.d.ts",
 		"src/**/*.svelte"
-	],
+, "registry/sveltekit/components/theme/theme.context.svelte"	],
 	"compilerOptions": {
 		"allowJs": true,
 		"checkJs": true,

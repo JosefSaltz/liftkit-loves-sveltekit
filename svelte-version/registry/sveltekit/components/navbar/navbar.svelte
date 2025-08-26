@@ -9,7 +9,6 @@
   import MaterialLayer from "@/registry/sveltekit/components/material-layer";
   import PlaceholderBlock from "@/registry/sveltekit/components/placeholder-block";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { Dropdown, DropdownMenu, DropdownTrigger } from "@/registry/nextjs/components/dropdown";
 
   interface LkNavBarProps extends HTMLAttributes<HTMLDivElement> {
     material?: LkMaterial;

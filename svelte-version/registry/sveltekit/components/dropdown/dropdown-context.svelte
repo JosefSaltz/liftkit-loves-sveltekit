@@ -1,8 +1,8 @@
 <script lang="ts" module>
   // CustomDropdown.tsx
-  import type { LkCardProps } from "@/registry/sveltekit/components/card";
-  import "@/registry/sveltekit/components/dropdown/dropdown.css";
-  import { setContext, Snippet } from 'svelte';
+  import type { LkCardProps } from "$components/card";
+  import "$components/dropdown/dropdown.css";
+  import { setContext, type Snippet } from 'svelte';
 
   interface LkDropdownContext {
     open: boolean;
@@ -19,11 +19,8 @@
     children: Snippet;
     cardProps?: LkCardProps; // Optional props to pass to the child Card component.
   }
-
   // Context for dropdown state
   setContext<LkDropdownContext>("DropdownContext", {} as LkDropdownContext);
-    // TODO: Update this to a svelte type
-  let { children }: { children: Snippet} = $props();
   let open = $state(false);
   const setOpen = (state: boolean) => { open = state };
   const triggerRef = $state(null);
