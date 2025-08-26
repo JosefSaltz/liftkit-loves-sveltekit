@@ -2,6 +2,7 @@ import { setContext, onMount, getContext } from "svelte";
 import materialDynamicColors from "material-dynamic-colors";
 import { hexFromArgb, argbFromHex, TonalPalette, Hct, customColor } from "@material/material-color-utilities";
 import { toSentenceCase } from "@/registry/universal/lib/utils/stringUtils";
+import { setThemeContext } from "./theme.context.svelte";
 // Define types for theme colors
 interface ThemeColors {
   primary: string;
@@ -77,7 +78,7 @@ interface PaletteState {
 class TonalSwatches {
   [_: string]: string;   // now any string key is allowed
   constructor(hue: number, chroma: number) {
-    
+
     const swatch = TonalPalette.fromHueAndChroma(hue, chroma);
 
     for (let i = 1; i <= 99; i++) {
@@ -204,11 +205,11 @@ let palette = $state<PaletteState>({
   "success": "#0cfecd",
   "info": "#175bfc"
 });
-const setPalette = (state: PaletteState) => { palette = { ...palette, ...state} }; 
+const setPalette = (state: PaletteState) => { palette = { ...palette, ...state } };
 const getPalette = () => palette;
 
 let navIsOpen = $state(false);
-const setNavIsOpen = (state: boolean) => { navIsOpen = state};
+const setNavIsOpen = (state: boolean) => { navIsOpen = state };
 const getNavIsOpen = () => navIsOpen;
 // update the root css variables with the theme values
 $effect(() => {
@@ -234,7 +235,7 @@ onMount(() => {
   updateTheme(palette);
   /**TODO: Debundle scroll behavior overrides from the central theme context */
   /**This is such a confusing place to put it. */
-  
+
   const disableScrollOnNumberInputs = (event: WheelEvent) => {
     const activeElement = document.activeElement as HTMLInputElement;
     if (activeElement?.type === "number") {
@@ -428,7 +429,7 @@ const updateThemeFromMaster = async (hexCode: string) => {
   }
 }
 
-const themeContext = {
+export const globalTheme = $state({
   theme,
   updateTheme,
   updateThemeFromMaster,
@@ -438,10 +439,4 @@ const themeContext = {
   setNavIsOpen,
   getColorMode,
   setColorMode,
-};
-
-type ThemeContext = typeof themeContext;
-export const getThemeContext = () => getContext<ThemeContext>("ThemeContext");
-export const setThemeContext = (themeData: typeof themeContext) => { setContext("ThemeContext", themeData) };
-
-setThemeContext(themeContext);
+});

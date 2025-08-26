@@ -4,7 +4,8 @@
   import Row from "@/registry/sveltekit/components/row";
   import Switch from "@/registry/sveltekit/components/switch";
   import IconButton from "@/registry/sveltekit/components/icon-button";
-  import { getThemeContext } from "@/registry/sveltekit/components/theme"
+  import { globalTheme } from "$components/theme";
+  
   type LkColorGroup =
     | "master"
     | "primary"
@@ -18,7 +19,7 @@
     | "info";
 
 
-  const { getPalette, setPalette, theme, updateTheme, updateThemeFromMaster, getColorMode, setColorMode } = getThemeContext();
+  const { getPalette, setPalette, theme, updateTheme, updateThemeFromMaster, getColorMode, setColorMode } = globalTheme;
 
   const brandPalette: LkColorGroup[] = ["primary", "secondary", "tertiary"];
 
