@@ -29,7 +29,7 @@
 		fontClass = 'display2-bold',
 		fontColor,
 		// content = "Heading",
-		className,
+		class: className,
 		children,
 		...restProps
 	}: LkHeadingProps = $props();
