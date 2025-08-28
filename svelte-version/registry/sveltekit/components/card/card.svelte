@@ -61,7 +61,7 @@
 >
   <div data-lk-card-element="padding-box" class={isScrollable ? "overflow-auto" : ""} data-lk-card-optical-correction={opticalCorrection}>
     <div data-lk-component="slot" data-lk-slot="children">
-      {children}
+      {@render children?.()}
     </div>
     <!-- define types for material scrim thickness -->
   </div>

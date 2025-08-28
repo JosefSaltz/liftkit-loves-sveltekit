@@ -4,12 +4,24 @@
 	import Column from '$components/column';
 	import Container from '$components/container';
 	import Card from '$components/card';
-	import Button from '$components/button';
-	import { IconName } from 'lucide-react/dynamic';
+	
+	const scaleFactors: LkFontClass[] = [
+			"display1",
+			"display2",
+			"title1",
+			"title2",
+			"title3",
+			"heading",
+			"subheading",
+			"body",
+			"callout",
+			"label",
+			"caption",
+			"capline",
+		];
+</script>
 
-
-
-<div class="bg-surfacecontainer" style="backgroundImage: "url(/testimage.png)";">
+<div class="bg-surfacecontainer" style="backgroundImage: url(/testimage.png);">
 	<Section padding="md">
 		<Container>
 			<h1 class="display2-bold mb-md">Card Staging</h1>
