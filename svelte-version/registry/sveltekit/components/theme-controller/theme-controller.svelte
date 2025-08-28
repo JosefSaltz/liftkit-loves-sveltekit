@@ -1,10 +1,10 @@
 <script lang="ts">
-  import Card from "@/registry/sveltekit/components/card";
-  import Column from "@/registry/sveltekit/components/column";
-  import Row from "@/registry/sveltekit/components/row";
-  import Switch from "@/registry/sveltekit/components/switch";
-  import IconButton from "@/registry/sveltekit/components/icon-button";
-  import { globalTheme } from "$components/theme";
+  import Card from "$components/card";
+  import Column from "$components/column";
+  import Row from "$components/row";
+  import Switch from "$components/switch";
+  import IconButton from "$components/icon-button";
+  import { globalTheme } from "$components/theme/theme.svelte.ts";
   
   type LkColorGroup =
     | "master"
@@ -19,34 +19,35 @@
     | "info";
 
 
-  const { getPalette, setPalette, theme, updateTheme, updateThemeFromMaster, getColorMode, setColorMode } = globalTheme;
+  const { palette, setPalette, updateTheme, updateThemeFromMaster, getColorMode, setColorMode } = globalTheme;
 
   const brandPalette: LkColorGroup[] = ["primary", "secondary", "tertiary"];
 
   const semanticPalette: LkColorGroup[] = ["error", "warning", "success", "info"];
 
   const layoutPalette: LkColorGroup[] = ["neutral", "neutralvariant"];
-
-  let paletteArray = $state(
-    Object.keys(getPalette()).map((key) => {
-      const palette = getPalette();
-      return { key, value: palette[key] };
-    })
-  );
-  const setPaletteArray = (state: { key: string, value: string}[]) => { paletteArray = state };
+  // This state is unused as far as my linter reports
+  // let paletteArray = $state(
+  //   Object.keys(palette).map((key) => {
+  //     return { key, value: palette[key] };
+  //   })
+  // );
+  // // We keep the setter function for exportable reassignment of state runes
+  // const setPaletteArray = (state: { key: string, value: string}[]) => { paletteArray = state };
 
   $effect(() => {
-    const palette = getPalette();
+    if(!palette) return;
     updateTheme(palette);
-    const newPaletteArray = Object.keys(palette).map((key) => {
+    const newPaletteArray = Object.keys(palette)?.map((key) => {
       return { key, value: palette[key] };
     });
-    setPaletteArray(newPaletteArray);
+    // Disabled due to nothing reading this state
+    //setPaletteArray(newPaletteArray);
   });
 
   const handleColorChange = (key: LkColorGroup, newValue: string) => {
     if (key === "master") {
-      updateThemeFromMaster(newValue, setPalette);
+      updateThemeFromMaster(newValue);
     } 
     else {
       setPalette({ [key]: newValue })
@@ -157,7 +158,7 @@
               <input
                 type="color"
                 name="master"
-                value={getPalette()["master"]}
+                value={palette["master"]}
                 onchange={(event) =>  handleColorChange("master", event.target?.value)}
               />
               <Column>
@@ -180,7 +181,7 @@
                 <input
                   type="color"
                   name={colorGroup}
-                  value={getPalette()[colorGroup]}
+                  value={palette[colorGroup]}
                   onchange={(event) => handleColorChange(colorGroup, event.target.value)}
                 />
                 <Column>
