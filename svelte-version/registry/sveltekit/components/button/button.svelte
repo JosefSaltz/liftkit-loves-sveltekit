@@ -1,10 +1,10 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
+  import { propsToDataAttrs } from "$registry/lib/utilities";
   //import { IconName } from "lucide-react/dynamic";
-  import "@/registry/sveltekit/components/button/button.css";
-  import StateLayer from "@/registry/sveltekit/components/state-layer";
-  import type { LkStateLayerProps } from "@/registry/sveltekit/components/state-layer";
-  import Icon from "@/registry/sveltekit/components/icon";
+  import "$components/button/button.css";
+  import StateLayer from "$components/state-layer";
+  import type { LkStateLayerProps } from "$components/state-layer";
+  import Icon from "$components/icon";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getOnToken } from "@/registry/universal/lib/colorUtils";
 	import type { IconName } from "lucide-react/dynamic";
@@ -70,7 +70,6 @@
   const onColorToken = getOnToken(color) as LkColor;
 
   // Define different base color classes based on variant
-
   let baseButtonClasses = "";
 
   switch (variant) {
@@ -123,7 +122,7 @@
       <div data-lk-icon-position="end">
         <Icon name={endIcon} color={variant === "fill" ? onColorToken : color} data-lk-icon-position="end"></Icon>
       </div>
-    {/if}}
+    {/if}
   </div>
   <StateLayer {...localStateLayerProps}/>
 </button>
