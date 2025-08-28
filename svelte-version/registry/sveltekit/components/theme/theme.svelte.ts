@@ -1,8 +1,6 @@
-import { setContext, onMount, getContext } from "svelte";
+import { onMount } from "svelte";
 import materialDynamicColors from "material-dynamic-colors";
 import { hexFromArgb, argbFromHex, TonalPalette, Hct, customColor } from "@material/material-color-utilities";
-import { toSentenceCase } from "@/registry/universal/lib/utils/stringUtils";
-import { setThemeContext } from "./theme.context.svelte";
 // Define types for theme colors
 interface ThemeColors {
   primary: string;
@@ -86,7 +84,10 @@ class TonalSwatches {
     }
   }
 }
-
+function toSentenceCase(str: string): string {
+  if (!str) return ""; // handle empty or undefined input
+  return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
+}
 const theme = $state<ThemeState>({
   light: {
     primary: "#004ee7",
@@ -189,11 +190,11 @@ const theme = $state<ThemeState>({
     onInfoContainer: "#001550",
   },
 });
-
+// Color Mode State
 let colorMode = $state<"light" | "dark">("light");
 const setColorMode = (state: "light" | "dark") => { colorMode = state };
 const getColorMode = () => colorMode;
-
+// Palette State
 let palette = $state<PaletteState>({
   "primary": "#035eff",
   "secondary": "#badcff",
@@ -205,64 +206,14 @@ let palette = $state<PaletteState>({
   "success": "#0cfecd",
   "info": "#175bfc"
 });
-const setPalette = (state: PaletteState) => { palette = { ...palette, ...state } };
-const getPalette = () => palette;
-
+const setPalette = (newState: newState) => { palette = { ...palette, ...newState } };
+// Nav Open State
 let navIsOpen = $state(false);
 const setNavIsOpen = (state: boolean) => { navIsOpen = state };
 const getNavIsOpen = () => navIsOpen;
-// update the root css variables with the theme values
-$effect(() => {
-  const root = document.documentElement;
-  // console.log(root);
-  Object.keys(theme.light).forEach((key) => {
-    root.style.setProperty(`--light__${key.toLowerCase()}_lkv`, theme.light[key]);
-  });
 
-  Object.keys(theme.dark).forEach((key) => {
-    root.style.setProperty(`--dark__${key.toLowerCase()}_lkv`, theme.dark[key]);
-  });
-
-  if (colorMode === "dark") {
-    Object.keys(theme.dark).forEach((key) => {
-      root.style.setProperty(`--light__${key.toLowerCase()}_lkv`, theme.dark[key]);
-    });
-  }
-});
-
-//Initial theme generation on mount
-onMount(() => {
-  updateTheme(palette);
-  /**TODO: Debundle scroll behavior overrides from the central theme context */
-  /**This is such a confusing place to put it. */
-
-  const disableScrollOnNumberInputs = (event: WheelEvent) => {
-    const activeElement = document.activeElement as HTMLInputElement;
-    if (activeElement?.type === "number") {
-      event.preventDefault();
-    }
-  };
-
-  const handleKeyDown = (event: KeyboardEvent) => {
-    const activeElement = document.activeElement as HTMLInputElement;
-    if (["ArrowUp", "ArrowDown"].includes(event.key) && activeElement?.type === "number") {
-      event.preventDefault();
-    }
-  };
-
-  document.addEventListener("wheel", disableScrollOnNumberInputs, {
-    passive: false,
-  });
-  document.addEventListener("keydown", handleKeyDown);
-
-  return () => {
-    document.removeEventListener("wheel", disableScrollOnNumberInputs);
-    document.removeEventListener("keydown", handleKeyDown);
-  };
-});
-
-const updateTheme = async (palette: PaletteState) => {
-  Object.keys(palette).forEach((key) => {
+export const updateTheme = async (newPaletteState: PaletteState) => {
+  Object.keys(newPaletteState).forEach((key) => {
     var argb = argbFromHex(palette[key]);
     var hct = Hct.fromInt(argb);
 
@@ -433,7 +384,7 @@ export const globalTheme = $state({
   theme,
   updateTheme,
   updateThemeFromMaster,
-  getPalette,
+  palette,
   setPalette,
   getNavIsOpen,
   setNavIsOpen,
