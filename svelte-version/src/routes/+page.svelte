@@ -421,11 +421,11 @@
     </div>
 
     {#each variants as variant}
-      <div key={variant}>
+      <div>
         <h2>{variant} Variant</h2>
         <div>
           {#each buttonSizes as size}
-            <div key={`${variant}-${size}`}>
+            <div>
               <h3>Size: {size}</h3>
               <div>
                 <div>
