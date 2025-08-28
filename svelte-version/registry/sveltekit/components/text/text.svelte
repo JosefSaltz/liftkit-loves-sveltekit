@@ -1,27 +1,37 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/text/text.css";
-	import type { HTMLAttributes } from "svelte/elements";
-	import type { ElementType, JSX } from "react";
-	import type { Snippet } from "svelte";
+	import '$components/text/text.css';
+	import type { HTMLAttributes } from 'svelte/elements';
 
-  type LkSemanticTag = JSX.IntrinsicAttributes | Snippet;
+	type LkSemanticTag = string;
 
-  export interface LkTextProps extends HTMLAttributes<HTMLElement> {
-    fontClass?: LkFontClass;
-    content?: string;
-    color?: LkColor;
-    tag?: LkSemanticTag;
-    className?: string; // explicitly extracting because internal logic controls its rendering order
-  }
+	export interface LkTextProps extends HTMLAttributes<Text> {
+		fontClass?: LkFontClass;
+		content?: string;
+		color?: LkColor;
+		tag?: LkSemanticTag;
+		className?: string; // explicitly extracting because internal logic controls its rendering order
+	}
 
-  let { tag = "div", fontClass, color, children, style, class: className = "", ...restProps }: LkTextProps = $props()
-  const Tag = tag;
-  /**Temporarily removing the attr spreader because it's not being used */
-  // const textAttrs = useMemo(() => propsToDataAttrs(restProps, "text"), [restProps]);
+	let {
+		tag = 'div',
+		fontClass,
+		color,
+		children,
+		style,
+		class: className = '',
+		...restProps
+	}: LkTextProps = $props();
+
+	/**Temporarily removing the attr spreader because it's not being used */
+	// const textAttrs = useMemo(() => propsToDataAttrs(restProps, "text"), [restProps]);
 </script>
 
-<Tag data-lk-component="text" className={`${fontClass || ""} ${color ? "color-" + color : ""} ${className || ''}`} style={style} {...restProps}>
-  {@render children?.()}
-</Tag>
-
+<svelte:element
+  this={tag}
+	data-lk-component="text"
+	class={`${fontClass || ''} ${color ? 'color-' + color : ''} ${className || ''}`}
+	{style}
+	{...restProps}
+>
+	{@render children?.()}
+</svelte:element>
