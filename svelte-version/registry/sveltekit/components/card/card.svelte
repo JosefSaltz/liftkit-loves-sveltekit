@@ -1,24 +1,10 @@
 <script lang="ts">
-  import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/card/card.css";
-  import MaterialLayer from "@/registry/sveltekit/components/material-layer";
-	import type { HTMLAttributes } from "svelte/elements";
-	import type { Snippet } from "svelte";
-
+  import { propsToDataAttrs } from "$registry/lib/utilities";
+  import "$components/card/card.css";
+  import MaterialLayer from "$components/material-layer"; 
+  import type { LkCardProps } from "./card.types"
   // TODO: Figure out what the appropriate svelte type to extend off of is
-  export interface LkCardProps extends HTMLAttributes<HTMLDivElement> {
-    scaleFactor?: LkFontClass | "none";
-    variant?: "fill" | "outline" | "transparent";
-    material?: "flat" | "glass"; //TODO: Integrate these material controls with the new MaterialLayer component features
-    materialProps?: LkMatProps;
-    opticalCorrection?: "top" | "left" | "right" | "bottom" | "x" | "y" | "all" | "none";
-    isClickable?: boolean;
-    bgColor?: LkColorWithOnToken | "transparent"; //optional. does not need to have an "on" token because handled via bg global utility class, which assigns text color
-    className?: string; //optional. explicitly listing here because we need to control how it mixes in with other styles controlled by classes
-    children?: Snippet;
-    isScrollable?: boolean; //optional. if true, will add overflow-y: scroll to the card
-    
-  }
+  
   /**
    * A flexible card component that supports various visual styles and behaviors.
    *
