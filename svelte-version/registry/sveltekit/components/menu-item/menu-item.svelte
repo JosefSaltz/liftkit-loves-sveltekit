@@ -20,22 +20,21 @@
  * </MenuItem>
  * ```
  */
-import { useMemo } from "react";
-import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-import "@/registry/sveltekit/components/menu-item/menu-item.css";
-import StateLayer from "@/registry/sveltekit/components/state-layer";
-import type { IconName } from "lucide-react/dynamic";
-import Icon from "@/registry/sveltekit/components/icon";
-import { LkIconProps } from "@/registry/sveltekit/components/icon";
 
-interface LkMenuItemProps extends React.HTMLAttributes<HTMLDivElement> {
+import StateLayer from "@/registry/sveltekit/components/state-layer";
+import Icon from "$components/icon";
+import type { LkIconProps } from "$components/icon";
+import type { HTMLAttributes } from "svelte/elements";
+
+
+interface LkMenuItemProps extends HTMLAttributes<HTMLDivElement> {
   startIcon?: LkIconProps;
   endIcon?: LkIconProps;
-  children?: React.ReactNode;
   fontClass?: LkFontClass;
   title?: string;
-  className?: string; //explicitly defining because it's used in internal component logic
-  onClick?: React.MouseEventHandler<HTMLDivElement>;
+  onClick?: () => void
+  keyToListen: string;
+  tabindex: number;
 }
   // const dataAttrs = useMemo(() => propsToDataAttrs(restProps, "menu-item"), [restProps]); omitting because it is not used
 
@@ -45,8 +44,10 @@ let {
   fontClass = "body",
   title,
   children,
-  className,
+  class: className,
   onClick,
+  tabindex,
+  keyToListen,
   ...restProps
 }: LkMenuItemProps = $props() 
 </script>
@@ -54,13 +55,19 @@ let {
 <div
   data-lk-component="menu-item"
   title={typeof children === "string" ? children : ""}
-  className={`${className || ""}`}
-  onClick={onClick || undefined}
+  class={`${className || ""}`}
+  onclick={onClick || undefined}
+  onkeydown={(e) => { if(onClick && e.key === keyToListen) onClick()}}
+  role="menuitem"
+  tabindex={tabindex}
 >
-  {startIcon && <Icon {...startIcon} data-lk-icon-position="start"></Icon>}
-  <p data-lk-menu-item-element="content-wrap">{children}</p>
-  {endIcon && <Icon {...endIcon} data-lk-icon-position="end"></Icon>}
-
+  {#if startIcon} 
+    <Icon {...startIcon} data-lk-icon-position="start"></Icon>
+  {/if}
+  <p data-lk-menu-item-element="content-wrap">{@render children?.()}</p>
+  {#if endIcon} 
+    <Icon {...endIcon} data-lk-icon-position="end"></Icon>
+  {/if}
   <StateLayer></StateLayer>
 </div>
 
