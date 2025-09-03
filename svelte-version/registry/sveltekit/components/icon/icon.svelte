@@ -1,6 +1,6 @@
 <script lang="ts">
   import { Icon } from "@lucide/svelte";
-  import "@/registry/sveltekit/components/icon/icon.css";
+  import "$components/icon/icon.css";
 	import type { LkIconProps } from "./icon.types";
 
   let {

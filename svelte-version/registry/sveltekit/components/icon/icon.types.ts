@@ -6,5 +6,6 @@ export interface LkIconProps {
   color?: LkColor | "currentColor";
   display?: "block" | "inline-block" | "inline";
   strokeWidth?: number;
-  opticShift?: boolean; //if true, pulls icon slightly upward
+  opticShift?: boolean;
+  'data-lk-icon-position'?: 'start' | 'end' //if true, pulls icon slightly upward
 }
