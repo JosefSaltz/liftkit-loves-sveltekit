@@ -1,22 +1,22 @@
 <script lang="ts">
   import styles from "./page.module.css";
-  import Section from "@/registry/sveltekit/components/section";
-  import Text from "@/registry/sveltekit/components/text";
-  import Row from "@/registry/sveltekit/components/row";
+  import Section from "$components/section";
+  import Text from "$components/text";
+  import Row from "$components/row";
   
-  import Sticker from "@/registry/sveltekit/components/sticker";
-  import Button from "@/registry/sveltekit/components/button";
-  import Image from "@/registry/sveltekit/components/image";
-  import Badge from "@/registry/sveltekit/components/badge";
-  import Icon from "@/registry/sveltekit/components/icon";
-  import Grid from "@/registry/sveltekit/components/grid";
-  import TabContent from "@/registry/sveltekit/components/tab-content";
-  import Tabs from "@/registry/sveltekit/components/tabs";
-  import Card from "@/registry/sveltekit/components/card";
+  import Sticker from "$components/sticker";
+  import Button from "$components/button";
+  import Image from "$components/image";
+  import Badge from "$components/badge";
+  import Icon from "$components/icon";
+  import Grid from "$components/grid";
+  import TabContent from "$components/tab-content";
+  import Tabs from "$components/tabs";
+  import Card from "$components/card";
   
-  import NavBar from "@/registry/sveltekit/components/navbar";
-  import IconButton from "@/registry/sveltekit/components/icon-button";
-  import ThemeController from "@/registry/sveltekit/components/theme-controller";
+  import NavBar from "$components/navbar";
+  import IconButton from "$components/icon-button";
+  import ThemeController from "$components/theme-controller";
 	import type { CSSProperties } from "react";
   
   type NavButton = {
@@ -62,8 +62,6 @@
 </script>
 
 <div class={styles.page}>
-
-
 <ThemeController/>
   <NavBar
     navButtons={[
