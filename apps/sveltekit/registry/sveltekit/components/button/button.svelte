@@ -3,7 +3,7 @@
   //import { IconName } from "lucide-react/dynamic";
   import "$components/button/button.css";
   import StateLayer from "$components/state-layer";
-  import type { LkStateLayerProps } from "$components/state-layer";
+  import { type LkStateLayerProps } from "$components/state-layer";
   import Icon from "$components/icon";
 	import type { HTMLAttributes } from "svelte/elements";
 	import { getOnToken } from "@/registry/universal/lib/colorUtils";

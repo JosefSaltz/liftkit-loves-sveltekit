@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Row from "../row";
-	import MenuItem from "./menu-item.svelte";
+import MenuItem from "./menu-item.svelte";
   import type { LkIconProps } from "$components/icon";
 
   type MenuItemGroupProps = {
@@ -28,7 +28,15 @@
 
   function* TabIndexGenerator() {
     let tabIndex = 0;
-    yield tabIndex++;
+    yield tabIndex;
+  }
+
+  function* ListenableKeyGenerator() {
+    const availableKeys = [
+      '1', '2', '3', '4', '5',
+      '6', '7', '8', '9', '0',
+      '-', '=', '`', 
+    ]
   }
 </script>
 

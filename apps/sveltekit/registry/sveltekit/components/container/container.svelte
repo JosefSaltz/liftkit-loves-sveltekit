@@ -1,6 +1,6 @@
 <script lang="ts">
   import { propsToDataAttrs } from "@/registry/sveltekit/lib/utilities";
-  import "@/registry/sveltekit/components/container/container.css";
+  import "$components/container/container.css";
 	import type { HTMLAttributes } from "svelte/elements";
 
   interface LkContainerProps extends HTMLAttributes<HTMLDivElement> {

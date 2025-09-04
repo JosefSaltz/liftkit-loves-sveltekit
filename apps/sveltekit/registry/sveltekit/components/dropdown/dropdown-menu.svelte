@@ -1,15 +1,19 @@
 <script lang="ts">
-  import { getContext } from "svelte"
-  let { children, cardProps }: LkDropdownMenuProps= $props() 
-  const { open, setOpen, triggerRef, contentRef } = getContext('DropdownContext');
+  import { getContext } from "svelte";
+  import type { DropdownContext, LkDropdownMenuProps } from "./dropdown.svelte.ts";
+  import Card from "$components/card";
+  import Column from "$components/column";
+  
+  let { children, cardProps }: LkDropdownMenuProps = $props()
+  let { open, setOpen, triggerRef, contentRef } = getContext("DropdownContext") as DropdownContext;
 
   $effect(() => {
     function handleClickOutside(e: MouseEvent) {
       if (
-        contentRef.current &&
-        !contentRef.current.contains(e.target as Node) &&
-        triggerRef.current &&
-        !triggerRef.current.contains(e.target as Node)
+        contentRef &&
+        !contentRef.contains(e.target as Node) &&
+        triggerRef &&
+        !triggerRef.contains(e.target as Node)
       ) {
         setOpen(false);
       }
@@ -19,12 +23,9 @@
     return () => document.removeEventListener("mousedown", handleClickOutside);
   });
 
-  if (!open || !triggerRef.current) return null;
-
-  const rect = triggerRef.current.getBoundingClientRect();
+  const rect = triggerRef?.getBoundingClientRect();
 
   /**Calculate transform origin based on triggerRef viewport quadrant */
-
   function getQuadrant() {
     var windowWidth = window.innerWidth;
     var windowHeight = window.innerHeight;
@@ -41,7 +42,8 @@
       triggerQuadrant = isLeft ? "top-left" : "top-right";
     }
 
-    var positionStyle: React.CSSProperties = {};
+    type DropdownPositionStyle = { top: number, left: number} | undefined;
+    var positionStyle: DropdownPositionStyle;
 
     switch (triggerQuadrant) {
       case "top-left":
@@ -64,26 +66,29 @@
     return { triggerQuadrant, positionStyle };
   }
 
-  const quadrantData = getQuadrant();
-
-  const style = {
-    top: rect.bottom + window.scrollY,
-    left: rect.right + window.scrollX,
-  };
-
+  const quadrantData = $derived(getQuadrant());
+  
+  // const style = {
+  //   top: rect.bottom + window.scrollY,
+  //   left: rect.right + window.scrollX,
+  // };
 </script>
-<div
-      ref={contentRef}
-      style={quadrantData.positionStyle}
-      role="menu"
-      data-lk-component="dropdown-menu"
-      data-isactive={open}
-      data-lk-dropdown-trigger-quadrant={quadrantData.triggerQuadrant}
-    >
-      <Card {...cardProps} className="shadow-xl">
-        <Column gap="none" className={cardProps?.scaleFactor}>
-          {@render children()}
-        </Column>
-      </Card>
-    </div>,
-    document.body
+
+{#if open && triggerRef}
+  <div
+    id="dropdown-menu"
+    bind:this={contentRef}
+    role="menu"
+    style:top={quadrantData.positionStyle?.top}
+    style:left={quadrantData.positionStyle?.left}
+    data-lk-component="dropdown-menu"
+    data-isactive={open}
+    data-lk-dropdown-trigger-quadrant={quadrantData.triggerQuadrant}
+  >
+    <Card {...cardProps} class="shadow-xl">
+      <Column gap="none" class={cardProps?.scaleFactor}>
+        {@render children?.()}
+      </Column>
+    </Card>
+  </div>
+{/if}

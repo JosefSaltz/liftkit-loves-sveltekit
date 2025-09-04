@@ -65,7 +65,7 @@
 
   const handleCopyPalette = async () => {
     try {
-      const codeContent = `const [colorMode, setColorMode] = useState<"light" | "dark">("${colorMode}");
+      const codeContent = `const [colorMode, setColorMode] = useState<"light" | "dark">("${getColorMode()}");
   
   const [palette, setPalette] = useState<PaletteState>(${JSON.stringify(palette, null, 2)}`;
       await navigator.clipboard.writeText(codeContent);
@@ -129,7 +129,7 @@
             >
               <pre style:fontSize="0.618em" style:overflow="auto">
                 {`
-                  const [colorMode, setColorMode] = useState<"light" | "dark">("${colorMode}");
+                  const [colorMode, setColorMode] = useState<"light" | "dark">("${getColorMode()}");
                   const [palette, setPalette] = useState<PaletteState>(${JSON.stringify(palette, null, 2)}
                 `}
               </pre>
@@ -144,7 +144,7 @@
             <h2 class="capline mb-lg color-onsurfacevariant">Mode</h2>
             <Row alignItems="start" gap="md">
               <Column>
-                <Switch onClick={handleColorModeSwitch} value={colorMode === "dark" ? true : false}></Switch>
+                <Switch onClick={handleColorModeSwitch} value={getColorMode() === "dark" ? true : false}></Switch>
               </Column>
               <Column>
                 <label class="label mb-xs">Default to Dark Mode</label>
