@@ -1,7 +1,7 @@
 <script lang="ts">
 	import '@/registry/sveltekit/components/badge/badge.css';
 	import Icon from '@/registry/sveltekit/components/icon';
-	import { getOnToken } from '@/registry/universal/lib/colorUtils';
+	import { getOnToken } from '@repo/registry/';
 	import type { IconName } from 'lucide-react/dynamic';
 	import type { HTMLAttributes } from 'svelte/elements';
 

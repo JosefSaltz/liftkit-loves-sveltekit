@@ -11,7 +11,7 @@
   import { LkTextProps } from "@/registry/sveltekit/components/text";
   import { LkButtonProps } from "@/registry/sveltekit/components/button";
   import { LkIconButtonProps } from "@/registry/sveltekit/components/icon-button";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import { getOnToken } from "@repo/registry/universal/lib/colorUtils";
   import Card from "@/registry/sveltekit/components/card";
   import Row from "@/registry/sveltekit/components/row";
   import { LkCardProps } from "@/registry/sveltekit/components/card";

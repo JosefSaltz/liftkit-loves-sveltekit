@@ -23,6 +23,7 @@
 .netlify
 .wrangler
 .svelte-kit
+.turbo
 /build
 
 # os

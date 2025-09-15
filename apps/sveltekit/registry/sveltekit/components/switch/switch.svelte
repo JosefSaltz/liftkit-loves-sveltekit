@@ -1,6 +1,6 @@
 <script lang="ts">
   // import "@/registry/sveltekit/components/switch/switch.css";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import { getOnToken } from "@repo/registry/universal/lib/colorUtils";
 
   export interface LkSwitchProps {
     onClick?: (switchIsOn?: boolean) => void;

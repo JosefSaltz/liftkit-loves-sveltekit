@@ -6,7 +6,7 @@
   import { type LkStateLayerProps } from "$components/state-layer";
   import Icon from "$components/icon";
 	import type { HTMLAttributes } from "svelte/elements";
-	import { getOnToken } from "@/registry/universal/lib/colorUtils";
+	import { getOnToken } from "@repo/registry/universal/lib/colorUtils";
 	import type { IconName } from "lucide-react/dynamic";
 
   export interface LkButtonProps extends HTMLAttributes<HTMLButtonElement> {

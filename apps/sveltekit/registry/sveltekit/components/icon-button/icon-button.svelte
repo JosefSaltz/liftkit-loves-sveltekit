@@ -6,7 +6,7 @@
   import Icon from "@/registry/sveltekit/components/icon";
   import StateLayer from "@/registry/sveltekit/components/state-layer";
   import type { IconName } from "lucide-react/dynamic";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
+  import { getOnToken } from "@repo/registry/universal/lib/colorUtils";
 	import type { HTMLAttributes } from "svelte/elements";
 
 

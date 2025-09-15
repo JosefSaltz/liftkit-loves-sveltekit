@@ -1,5 +1,5 @@
 {
-	"extends": "./.svelte-kit/tsconfig.json",
+	"extends": ["@repo/typescript-config/base.json", "./.svelte-kit/tsconfig.json"],
 	"include": [ "**/*.ts", "**/*.d.ts", "**/*.svelte", "eslint.config.ts", "eslint.config.ts" ],
 	"compilerOptions": {
 		"allowImportingTsExtensions": true,

@@ -1,9 +1,9 @@
 <script lang="ts">
-  import Text from "@/registry/sveltekit/components/text";
-  import "@/registry/sveltekit/components/sticker/sticker.css";
-  import { getOnToken } from "@/registry/universal/lib/colorUtils";
   import type { Snippet } from "svelte";
 	import type { HTMLAttributes } from "svelte/elements";
+  import Text from "$components/text";
+  import "$components/sticker/sticker.css";
+  import { getOnToken } from "@repo/";
 
   /**
    * Props for the LkSticker component.

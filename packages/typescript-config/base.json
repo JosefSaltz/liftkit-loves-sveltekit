@@ -1,0 +1,21 @@
+{ 
+  "allowJs": true,
+  "include": ["**/*.ts"],
+  "exclude": [
+    "node_modules"
+  ],
+  "incremental": true,
+  "lib": [
+			"esnext",
+			"DOM",
+			"DOM.Iterable"
+		],
+  "module": "esnext",
+  "moduleResolution": "bundler",
+  "noEmit": true,
+  "strict": true,
+  "esModuleInterop": true,
+  "isolatedModules": true,
+  "resolveJsonModule": true,
+  "skipLibCheck": true
+}
